@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pt"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:data="http://www.thymeleaf.org/extras/data"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <link th:href="@{/favicon.ico}" rel="shortcut icon"/>
+    <link th:href="@{http://fonts.googleapis.com/icon?family=Material+Icons}" rel="stylesheet"/>
+    <!--<link type="text/css" rel="stylesheet" th:href="@{/css/materialize.css}" media="screen,projection"/>-->
+    <link type="text/css" rel="stylesheet" th:href="@{/css/uikit.min.css}"/>
+    <link type="text/css" rel="stylesheet" th:href="@{/css/animate.min.css}"/>
+    <link type="text/css" rel="stylesheet" th:href="@{/css/pace.css}"/>
+    <link type="text/css" rel="stylesheet" th:href="@{/css/studio.css}"/>
+    <link type="text/css" rel="stylesheet" th:href="@{/images/icons.svg}"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+</head>
+<body>
+<!--Barra Navegação-->
+<div th:replace="fragments/barraNavegacao :: barraNavegacao"></div>
+
+<div class="uk-container">
+
+    <div uk-grid="">
+        <!--<div class="uk-width-1-4@m">-->
+            <!--<div th:replace="fragments/quadro :: quadro"></div>-->
+        <!--</div>-->
+        <div class="uk-width-expand">
+            <div uk-alert=""><strong>Dados Básicos</strong>
+                <div class="uk-margin" th:text="${aluno.nome}"></div>
+                <div class="uk-margin" th:text="${aluno.sobrenome}"></div>
+            </div>
+
+            <ul uk-accordion="">
+                <li>
+                    <h3 class="uk-accordion-title">Endereço</h3>
+                    <div class="uk-accordion-content">
+                        <a class="uk-button uk-button-default uk-align-right" uk-toggle="" href="#modal-endereco">Adicionar</a>
+                    </div>
+                </li>
+                <li>
+                    <h3 class="uk-accordion-title">Contato</h3>
+                    <div class="uk-accordion-content">
+                        <a class="uk-button uk-button-default uk-align-right" uk-toggle="" href="#modal-contato">Adicionar</a>
+                    </div>
+                </li>
+                <li>
+                    <h3 class="uk-accordion-title">Plano</h3>
+                    <div class="uk-accordion-content">
+                        <a class="uk-button uk-button-default uk-align-right" uk-toggle="" href="#modal-plano">Adicionar</a>
+                    </div>
+                </li>
+                <li>
+                    <h3 class="uk-accordion-title">Histórico</h3>
+                    <div class="uk-accordion-content">
+                        <a class="uk-button uk-button-default uk-align-right" uk-toggle="" href="#modal-historico">Adicionar</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+
+<!--Modal Endereco-->
+<div id="modal-endereco" uk-modal="center: true">
+    <div class="uk-modal-dialog">
+        <button class="uk-modal-close-outside" type="button" uk-close=""></button>
+        <div th:replace="endereco/form :: endereco"></div>
+    </div>
+</div>
+
+<!--Modal contato-->
+<div id="modal-contato" uk-modal="center: true">
+    <div class="uk-modal-dialog">
+        <button class="uk-modal-close-outside" type="button" uk-close=""></button>
+        <div th:replace="contato/form :: contato"></div>
+    </div>
+</div>
+
+<!--Modal Plano-->
+<div id="modal-plano" uk-modal="center: true">
+    <div class="uk-modal-dialog">
+        <button class="uk-modal-close-outside" type="button" uk-close=""></button>
+        <div th:replace="plano/form :: plano"></div>
+    </div>
+</div>
+
+<!--Modal Historico-->
+<div id="modal-historico" uk-modal="center: true">
+    <div class="uk-modal-dialog">
+        <button class="uk-modal-close-outside" type="button" uk-close=""></button>
+        <div th:replace="historico/form :: historico"></div>
+    </div>
+</div>
+
+
+</body>
+<script type="text/javascript" th:src="@{https://code.jquery.com/jquery-2.1.1.min.js}"></script>
+<!--<script type="text/javascript" th:src="@{/js/materialize.js}"></script>-->
+<script type="text/javascript" th:src="@{/js/uikit.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/jquery.js}"></script>
+<script type="text/javascript" th:src="@{/js/pace.js}"></script>
+</html>

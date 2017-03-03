@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pt"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link th:href="@{/favicon.ico}" rel="shortcut icon"/>
+    <link th:href="@{http://fonts.googleapis.com/icon?family=Material+Icons}" rel="stylesheet"/>
+    <!--<link type="text/css" rel="stylesheet" th:href="@{/css/materialize.css}" media="screen,projection"/>-->
+    <link type="text/css" rel="stylesheet" th:href="@{/css/uikit.min.css}"/>
+    <link type="text/css" rel="stylesheet" th:href="@{/css/animate.min.css}"/>
+    <link type="text/css" rel="stylesheet" th:href="@{/css/pace.css}"/>
+    <link type="text/css" rel="stylesheet" th:href="@{/css/studio.css}"/>
+    <link type="text/css" rel="stylesheet" th:href="@{/images/icons.svg}"/>
+    <link type="text/css" rel="stylesheet" th:href="@{/css/meu.css}"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+</head>
+<body>
+<!--Barra Navegação-->
+<div th:replace="fragments/barraNavegacao :: barraNavegacao"></div>
+
+<div class="uk-container uk-margin-top animated fadeIn">
+    <div uk-grid="">
+
+        <!--Tabela-->
+        <div class="uk-width-expand">
+
+            <div class="uk-width-1-1">
+                <h3 class="uk-heading-bullet">Lista de Alunos</h3>
+            </div>
+
+            <div class="uk-flex">
+
+                <form class="uk-search uk-search-default uk-visible@s uk-width-expand"
+                      th:action="@{/aluno/filtro(filtro=${filtro})}">
+                    <span uk-search-icon=""></span>
+                    <input th:value="${filtro}" name="filtro" class="uk-search-input" type="search"
+                           autofocus="autofocus" placeholder="Pesquisar..."/>
+                </form>
+
+                <div class="uk-width-auto">
+                    <a class="uk-button uk-button-primary espaco_esquerda" th:href="@{/aluno/novo}">
+                        <i uk-icon="icon:plus" class="uk-hidden@s"></i>
+                        <span class="uk-visible@s">Adicionar</span>
+                    </a>
+                </div>
+            </div>
+            <div th:if="${alunos.empty}" class="uk-flex uk-flex-center uk-flex-middle uk-margin">
+                <span uk-icon="icon: info"></span>
+                <span>Nenhum Aluno Cadastrado!</span>
+            </div>
+
+            <div th:unless="${alunos.empty}">
+                <table id="tabela-alunos" class="uk-table uk-table-hover uk-table-striped uk-table-small">
+                    <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Nome</th>
+                        <th>Sobrenome</th>
+                        <th>Idade</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="aluno : ${alunos}" class="uk-visible-toggle">
+                        <td th:text="|${alunoStat.count}.|" class="uk-text-muted"></td>
+                        <td th:text="${aluno.nome}"></td>
+                        <td th:text="${aluno.sobrenome}"></td>
+                        <td>
+                            <div class="uk-invisible-hover uk-text-right">
+
+                                <a class="js-air-ajax-get"
+                                   uk-icon="icon: info" title="Visualizar" uk-tooltip=""
+                                   th:href="@{/detalhe/{id}(id=${aluno.id})}"></a>
+
+                                <!--<a class="js-air-ajax-get"-->
+                                   <!--uk-icon="icon: pencil" title="Editar" uk-tooltip=""-->
+                                   <!--th:href="@{/aluno/{id}(id=${aluno.id})}"></a>-->
+                            </div>
+                        </td>
+                    </tr>
+                    </tbody>
+
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<div th:replace="fragments/footer :: footer"></div>
+<!--Modal Cadastro-->
+<div id="modal-cadastro" uk-modal="center: true">
+    <div class="uk-modal-dialog">
+        <button class="uk-modal-close-outside" type="button" uk-close=""></button>
+        <div th:replace="aluno/form :: dadosBasicos"></div>
+    </div>
+</div>
+
+
+</body>
+<script type="text/javascript" th:src="@{https://code.jquery.com/jquery-2.1.1.min.js}"></script>
+<!--<script type="text/javascript" th:src="@{/js/materialize.js}"></script>-->
+<script type="text/javascript" th:src="@{/js/uikit.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/jquery.js}"></script>
+<script type="text/javascript" th:src="@{/js/pace.js}"></script>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:data="http://www.thymeleaf.org/extras/data"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <link th:href="@{/favicon.ico}" rel="shortcut icon"/>
+    <link th:href="@{http://fonts.googleapis.com/icon?family=Material+Icons}" rel="stylesheet"/>
+    <!--<link type="text/css" rel="stylesheet" th:href="@{/css/materialize.css}" media="screen,projection"/>-->
+    <link type="text/css" rel="stylesheet" th:href="@{/css/uikit.min.css}"/>
+    <link type="text/css" rel="stylesheet" th:href="@{/css/animate.min.css}"/>
+    <link type="text/css" rel="stylesheet" th:href="@{/css/pace.css}"/>
+    <link type="text/css" rel="stylesheet" th:href="@{/css/studio.css}"/>
+    <link type="text/css" rel="stylesheet" th:href="@{/images/icons.svg}"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+</head>
+<body>
+<div th:fragment="contato">
+    <form method="POST" class="uk-card-body uk-grid-small" th:action="@{/contato/salvar}"
+          th:object="${contato}">
+
+        <legend class="uk-legend">Contatos</legend>
+
+        <div class="uk-margin">
+            <input class="uk-input" type="text" placeholder="email" th:field="*{email}"/>
+        </div>
+
+        <div class="uk-margin">
+            <input class="uk-input" type="text" placeholder="telefone" th:field="*{telefone}"/>
+        </div>
+
+        <div class="uk-margin">
+            <input class="uk-input" type="text" placeholder="celular" th:field="*{celular}"/>
+        </div>
+
+        <hr class="uk-divider-icon"/>
+        <div class="uk-align-right">
+            <button class="uk-button uk-button-default uk-modal-close" type="button">Cancelar</button>
+            <button class="uk-button uk-button-primary" type="submit">Cadastrar</button>
+        </div>
+    </form>
+</div>
+
+</body>
+<script type="text/javascript" th:src="@{https://code.jquery.com/jquery-2.1.1.min.js}"></script>
+<!--<script type="text/javascript" th:src="@{/js/materialize.js}"></script>-->
+<script type="text/javascript" th:src="@{/js/uikit.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/jquery.js}"></script>
+<script type="text/javascript" th:src="@{/js/pace.js}"></script>
+</html>

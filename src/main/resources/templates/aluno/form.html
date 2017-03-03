@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:data="http://www.thymeleaf.org/extras/data"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <link th:href="@{/favicon.ico}" rel="shortcut icon"/>
+    <link th:href="@{http://fonts.googleapis.com/icon?family=Material+Icons}" rel="stylesheet"/>
+    <!--<link type="text/css" rel="stylesheet" th:href="@{/css/materialize.css}" media="screen,projection"/>-->
+    <link type="text/css" rel="stylesheet" th:href="@{/css/uikit.min.css}"/>
+    <link type="text/css" rel="stylesheet" th:href="@{/css/animate.min.css}"/>
+    <link type="text/css" rel="stylesheet" th:href="@{/css/pace.css}"/>
+    <link type="text/css" rel="stylesheet" th:href="@{/css/studio.css}"/>
+    <link type="text/css" rel="stylesheet" th:href="@{/images/icons.svg}"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+</head>
+<body>
+<div th:fragment="dadosBasicos">
+    <form method="POST" class="uk-card-body uk-grid-small" th:action="@{/aluno/salvar}"
+          th:object="${aluno}">
+
+        <legend class="uk-legend">Dados Básicos</legend>
+
+        <div class="uk-margin">
+            <label class="uk-form-label">Nome*</label>
+            <input class="uk-input" type="text" th:field="*{nome}" th:required="true"/>
+        </div>
+
+        <div class="uk-margin">
+            <label class="uk-form-label">Sobrenome*</label>
+            <input class="uk-input" type="text" th:field="*{sobrenome}" th:required="true"/>
+        </div>
+
+        <div class="uk-margin">
+            <label class="uk-form-label">Data Nascimento*</label>
+            <input class="uk-input" type="date" th:field="*{dataNascimento}" />
+        </div>
+
+        <div class="uk-margin">
+            <label class="uk-form-label">Profissão</label>
+            <input class="uk-input" type="text" th:field="*{profissao}"/>
+        </div>
+
+        <div class="uk-margin" uk-grid="">
+            <div class="uk-width-1-2@s ">
+                <label class="uk-form-label">CPF*</label>
+                <input class="uk-input" type="text" th:field="*{cpf}" th:required="true"/>
+            </div>
+            <div class="uk-width-1-2@s ">
+                <label class="uk-form-label">RG</label>
+                <input class="uk-input" type="text" th:field="*{rg}"/>
+            </div>
+        </div>
+
+        <div class="uk-margin">
+            <label class="uk-form-label">Início das Aulas*</label>
+            <input class="uk-input" type="date" th:field="*{dataInicio}" />
+        </div>
+
+        <div class="uk-margin">
+            <label class="uk-form-label">Observação</label>
+            <textarea class="uk-textarea" rows="5" placeholder="Observação" th:field="*{observacao}"/>
+        </div>
+        <hr class="uk-divider-icon"/>
+        <div class="uk-align-right">
+            <button class="uk-button uk-button-default uk-modal-close" type="button">Cancelar</button>
+            <button class="uk-button uk-button-primary" type="submit">Salvar</button>
+        </div>
+    </form>
+</div>
+
+</body>
+<script type="text/javascript" th:src="@{https://code.jquery.com/jquery-2.1.1.min.js}"></script>
+<!--<script type="text/javascript" th:src="@{/js/materialize.js}"></script>-->
+<script type="text/javascript" th:src="@{/js/uikit.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/jquery.js}"></script>
+<script type="text/javascript" th:src="@{/js/pace.js}"></script>
+</html>
