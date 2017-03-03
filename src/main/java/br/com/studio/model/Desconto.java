@@ -9,7 +9,7 @@ import java.math.BigDecimal;
 
 @Entity
 @Data
-@Table(name = "desconto")
+@Table(catalog = "studio", name = "desconto")
 public class Desconto implements Serializable {
 
     @Id

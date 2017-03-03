@@ -3,15 +3,13 @@ package br.com.studio.model;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Data
-@NoArgsConstructor
-public class Historico {
+@Table(catalog = "studio", name = "historico")
+public class Historico implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,5 +17,8 @@ public class Historico {
 
     private String descricao;
 
-//    private Aluno aluno;
+    @ManyToOne
+    @JoinColumn(name = "aluno_id")
+    private Aluno aluno;
+
 }

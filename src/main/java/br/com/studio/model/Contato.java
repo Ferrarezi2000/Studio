@@ -4,11 +4,12 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Data
-@NoArgsConstructor
-public class Contato {
+@Table(catalog = "studio", name = "contato")
+public class Contato implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,6 +22,6 @@ public class Contato {
     private Integer celular;
 
     @ManyToOne
-    @JoinColumn(name = "id_aluno")
+    @JoinColumn(name = "aluno_id")
     private Aluno aluno;
 }
