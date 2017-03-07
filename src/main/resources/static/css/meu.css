@@ -16,4 +16,5 @@ body{
 .menu{
     background-color: #9e4381 !important;
     color: whitesmoke !important;
+    height: 50px;
 }

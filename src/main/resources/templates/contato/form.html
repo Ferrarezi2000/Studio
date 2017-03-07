@@ -17,7 +17,7 @@
 </head>
 <body>
 <div th:fragment="contato">
-    <form method="POST" class="uk-card-body uk-grid-small" th:action="@{/contato/salvar}"
+    <form method="POST" th:action="@{/contato/salvar}"
           th:object="${contato}">
 
         <legend class="uk-legend">Contatos</legend>
@@ -25,15 +25,15 @@
         <input type="text" th:value="*{aluno.id}" th:field="*{aluno}"/>
 
         <div class="uk-margin">
-            <input class="uk-input" type="text" placeholder="email" th:field="*{email}"/>
+            <input class="uk-input" type="text" placeholder="E-mail" th:field="*{email}"/>
         </div>
 
         <div class="uk-margin">
-            <input class="uk-input" type="text" placeholder="telefone" th:field="*{telefone}"/>
+            <input class="uk-input" type="text" placeholder="Telefone" th:field="*{telefone}"/>
         </div>
 
         <div class="uk-margin">
-            <input class="uk-input" type="text" placeholder="celular" th:field="*{celular}"/>
+            <input class="uk-input" type="text" placeholder="Celular" th:field="*{celular}"/>
         </div>
 
         <hr class="uk-divider-icon"/>

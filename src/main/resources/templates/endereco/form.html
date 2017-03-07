@@ -17,25 +17,23 @@
 </head>
 <body>
 <div th:fragment="endereco">
-    <form method="POST" class="uk-card-body uk-grid-small" th:action="@{/endereco/salvar}"
+    <form method="POST" th:action="@{/endereco/salvar}"
           th:object="${endereco}">
 
         <legend class="uk-legend">Endereço</legend>
 
         <input type="text" th:value="*{aluno.id}" th:field="*{aluno}"/>
 
-
-
         <div class="uk-margin">
-            <input class="uk-input" type="text" placeholder="rua*" th:field="*{rua}"/>
+            <input class="uk-input" type="text" placeholder="Rua*" th:field="*{rua}"/>
         </div>
 
         <div class="uk-margin">
-            <input class="uk-input" type="text" placeholder="bairro*" th:field="*{bairro}"/>
+            <input class="uk-input" type="text" placeholder="Bairro*" th:field="*{bairro}"/>
         </div>
 
         <div class="uk-margin">
-            <input class="uk-input" type="text" placeholder="numero*" th:field="*{numero}"/>
+            <input class="uk-input" type="text" placeholder="Número*" th:field="*{numero}"/>
         </div>
 
         <hr class="uk-divider-icon"/>

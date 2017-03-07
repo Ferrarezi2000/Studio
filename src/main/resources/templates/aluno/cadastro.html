@@ -20,69 +20,77 @@
 <div th:replace="fragments/barraNavegacao :: barraNavegacao"></div>
 
 <div class="uk-container uk-margin-top animated fadeIn">
-    <div uk-grid="">
+    <div class="uk-width-1-1">
 
-        <!--Tabela-->
-        <div class="uk-width-expand">
-
-            <div class="uk-width-1-1" >
-                <h3 class="uk-heading-bullet">Cadastro de Aluno</h3>
+        <div class="uk-card uk-card-default">
+            <div class="uk-card-header">
+                <div class="uk-grid-small uk-flex-middle" uk-grid="">
+                    <div class="uk-width-auto">
+                        <img class="uk-border-circle" width="40" height="40" src="../docs/images/avatar.jpg"/>
+                    </div>
+                    <div class="uk-width-expand">
+                        <h3 class="uk-card-title uk-margin-remove-bottom">Cadastro de Aluno</h3>
+                    </div>
+                </div>
             </div>
+            <div class="uk-card-body">
+                <form method="POST" class="uk-card-body uk-grid-small" th:action="@{/aluno/salvar}"
+                      th:object="${aluno}">
 
-            <form method="POST" class="uk-card-body uk-grid-small" th:action="@{/aluno/salvar}"
-                  th:object="${aluno}">
+                    <legend class="uk-legend">Dados Básicos</legend>
+                    <div class="uk-margin" uk-grid="">
+                        <div class="uk-width-1-2@s">
+                            <label class="uk-form-label">Nome*</label>
+                            <input class="uk-input" autofocus="autofocus" type="text" th:field="*{nome}"
+                                   th:required="true"/>
+                        </div>
 
-                <legend class="uk-legend">Dados Básicos</legend>
-                <div class="uk-margin" uk-grid="">
-                    <div class="uk-width-1-2@s">
-                        <label class="uk-form-label">Nome*</label>
-                        <input class="uk-input" autofocus="autofocus" type="text" th:field="*{nome}"
-                               th:required="true"/>
+                        <div class="uk-width-1-2@s">
+                            <label class="uk-form-label">Sobrenome*</label>
+                            <input class="uk-input" type="text" th:field="*{sobrenome}" th:required="true"/>
+                        </div>
                     </div>
-
-                    <div class="uk-width-1-2@s">
-                        <label class="uk-form-label">Sobrenome*</label>
-                        <input class="uk-input" type="text" th:field="*{sobrenome}" th:required="true"/>
+                    <div class="uk-margin" uk-grid="">
+                        <div class="uk-width-1-4@s">
+                            <label class="uk-form-label">Data Nascimento*</label>
+                            <input class="uk-input" type="text" th:field="*{dataNascimento}"/>
+                        </div>
+                        <div class="uk-width-expand@s">
+                            <label class="uk-form-label">Profissão</label>
+                            <input class="uk-input" type="text" th:field="*{profissao}"/>
+                        </div>
+                        <div class="uk-width-1-4@s">
+                            <label class="uk-form-label">Início das Aulas*</label>
+                            <input class="uk-input" type="date" th:field="*{dataInicio}"/>
+                        </div>
                     </div>
-                </div>
-                <div class="uk-margin" uk-grid="">
-                    <div class="uk-width-1-4@s">
-                        <label class="uk-form-label">Data Nascimento*</label>
-                        <input class="uk-input" type="text" th:field="*{dataNascimento}"/>
+                    <div class="uk-margin" uk-grid="">
+                        <div class="uk-width-1-2@s ">
+                            <label class="uk-form-label">CPF*</label>
+                            <input class="uk-input" type="text" th:field="*{cpf}" th:required="true"/>
+                        </div>
+                        <div class="uk-width-1-2@s ">
+                            <label class="uk-form-label">RG</label>
+                            <input class="uk-input" type="text" th:field="*{rg}"/>
+                        </div>
                     </div>
-                    <div class="uk-width-expand@s">
-                        <label class="uk-form-label">Profissão</label>
-                        <input class="uk-input" type="text" th:field="*{profissao}"/>
+                    <div class="uk-margin">
+                        <label class="uk-form-label">Observação</label>
+                        <textarea class="uk-textarea" rows="5" placeholder="Observação" th:field="*{observacao}"/>
                     </div>
-                    <div class="uk-width-1-4@s">
-                        <label class="uk-form-label">Início das Aulas*</label>
-                        <input class="uk-input" type="date" th:field="*{dataInicio}"/>
+                    <div class="uk-margin uk-grid-small uk-child-width-auto" uk-grid="">
+                        <label class="uk-align-right">
+                            <input class="uk-checkbox" type="checkbox" checked="" th:field="*{virarCliente}"/>
+                            Negociaçao?
+                        </label>
                     </div>
-                </div>
-                <div class="uk-margin" uk-grid="">
-                    <div class="uk-width-1-2@s ">
-                        <label class="uk-form-label">CPF*</label>
-                        <input class="uk-input" type="text" th:field="*{cpf}" th:required="true"/>
+                    <hr class="uk-divider-icon"/>
+                    <div class="uk-align-right">
+                        <button class="uk-button uk-button-primary" type="submit">Salvar e Ativar</button>
+                        <span uk-icon="icon: check"></span>
                     </div>
-                    <div class="uk-width-1-2@s ">
-                        <label class="uk-form-label">RG</label>
-                        <input class="uk-input" type="text" th:field="*{rg}"/>
-                    </div>
-                </div>
-                <div class="uk-margin">
-                    <label class="uk-form-label">Observação</label>
-                    <textarea class="uk-textarea" rows="5" placeholder="Observação" th:field="*{observacao}"/>
-                </div>
-                <div class="uk-margin uk-grid-small uk-child-width-auto" uk-grid="">
-                    <label><input class="uk-checkbox" type="checkbox" checked="" th:field="*{virarCliente}"/> Negociaçao?</label>
-                </div>
-                <hr class="uk-divider-icon"/>
-                <div class="uk-align-right">
-                    <button class="uk-button uk-button-primary" type="submit">Salvar e Ativar</button>
-                    <span uk-icon="icon: check"></span>
-                </div>
-            </form>
-
+                </form>
+            </div>
         </div>
     </div>
 </div>
