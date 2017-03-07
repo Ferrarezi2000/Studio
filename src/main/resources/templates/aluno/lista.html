@@ -19,15 +19,19 @@
 <div th:replace="fragments/barraNavegacao :: barraNavegacao"></div>
 
 <div class="uk-container uk-margin-top animated fadeIn">
-    <div uk-grid="">
 
-        <!--Tabela-->
-        <div class="uk-width-expand">
-
-            <div class="uk-width-1-1">
-                <h3 class="uk-heading-bullet">Lista de Alunos</h3>
+    <div class="uk-card uk-card-default uk-width-1-1">
+        <div class="uk-card-header">
+            <div class="uk-grid-small uk-flex-middle" uk-grid="">
+                <div class="uk-width-expand">
+                    <h3 class="uk-card-title uk-margin-remove-bottom">Lista de Alunos Ativos</h3>
+                    <p class="uk-text-meta uk-margin-remove-top">
+                        <time th:text="${data}"></time>
+                    </p>
+                </div>
             </div>
-
+        </div>
+        <div class="uk-card-body">
             <div class="uk-flex">
 
                 <form class="uk-search uk-search-default uk-visible@s uk-width-expand"
@@ -56,7 +60,8 @@
                         <th>#</th>
                         <th>Nome</th>
                         <th>Sobrenome</th>
-                        <th>Idade</th>
+                        <th>CPF</th>
+                        <th></th>
                     </tr>
                     </thead>
                     <tbody>
@@ -64,26 +69,29 @@
                         <td th:text="|${alunoStat.count}.|" class="uk-text-muted"></td>
                         <td th:text="${aluno.nome}"></td>
                         <td th:text="${aluno.sobrenome}"></td>
+                        <td th:text="${aluno.cpf}"></td>
                         <td>
                             <div class="uk-invisible-hover uk-text-right">
-
-                                <a class="js-air-ajax-get"
-                                   uk-icon="icon: info" title="Visualizar" uk-tooltip=""
+                                <a uk-icon="icon: info" title="Informações" uk-tooltip=""
                                    th:href="@{/detalhe/{id}(id=${aluno.id})}"></a>
-
                                 <!--<a class="js-air-ajax-get"-->
-                                   <!--uk-icon="icon: pencil" title="Editar" uk-tooltip=""-->
-                                   <!--th:href="@{/aluno/{id}(id=${aluno.id})}"></a>-->
+                                <!--uk-icon="icon: pencil" title="Editar" uk-tooltip=""-->
+                                <!--th:href="@{/aluno/{id}(id=${aluno.id})}"></a>-->
                             </div>
                         </td>
                     </tr>
                     </tbody>
-
                 </table>
+            </div>
+
+            <div class="uk-card-footer">
+                <a href="#" class="uk-button uk-button-text">Read more</a>
             </div>
         </div>
     </div>
+
 </div>
+
 <div th:replace="fragments/footer :: footer"></div>
 <!--Modal Cadastro-->
 <div id="modal-cadastro" uk-modal="center: true">

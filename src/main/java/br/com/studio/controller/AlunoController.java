@@ -13,6 +13,8 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 @Controller
 @RequestMapping("/aluno")
@@ -24,15 +26,23 @@ public class AlunoController {
 
     @GetMapping
     public ModelAndView index(Aluno aluno) {
+        LocalDate agora = LocalDate.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        String data = agora.format(formatter);
         ModelAndView mv = new ModelAndView("aluno/lista")
+                .addObject("data", data)
                 .addObject("alunos", alunoRepository.findAllByOrderByNome());
         return mv;
     }
 
     @GetMapping("/filtro")
     public ModelAndView filtro(String filtro) {
+        LocalDate agora = LocalDate.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        String data = agora.format(formatter);
         ModelAndView mv = new ModelAndView("aluno/lista")
                 .addObject(new Aluno())
+                .addObject("data", data)
                 .addObject("alunos", alunoRepository.findAllByNomeOrderByNome(filtro));
         return mv;
     }
@@ -45,7 +55,6 @@ public class AlunoController {
 
     @PostMapping("/salvar")
     public ModelAndView salvar(@Valid Aluno aluno, BindingResult result, RedirectAttributes attributes) {
-
         if (result.hasErrors()) {
             return index(aluno);
         }
