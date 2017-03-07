@@ -12,9 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import javax.swing.text.DateFormatter;
 import javax.validation.Valid;
-import java.time.format.DateTimeFormatter;
 
 @Controller
 @RequestMapping("/aluno")
@@ -66,16 +64,6 @@ public class AlunoController {
     public ModelAndView editar(@PathVariable("id") Aluno aluno) {
         ModelAndView mv = novo(aluno);
         mv.addObject(aluno);
-        return mv;
-    }
-
-    @GetMapping("/detalhe")
-    public ModelAndView detalhe(@PathVariable Aluno aluno) {
-        ModelAndView mv = new ModelAndView("negociacao/endereco")
-                .addObject(new Endereco());
-//                .addObject(new Contato())
-//                .addObject(new Plano())
-//                .addObject(new Historico());
         return mv;
     }
 
