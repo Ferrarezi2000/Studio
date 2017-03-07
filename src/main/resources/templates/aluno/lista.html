@@ -85,7 +85,8 @@
             </div>
 
             <div class="uk-card-footer">
-                <span th:value="${alunos.size}"></span>
+                <span>Total de Alunos Ativos: </span>
+                <span th:text="${alunos.size()}"></span>
             </div>
         </div>
     </div>
