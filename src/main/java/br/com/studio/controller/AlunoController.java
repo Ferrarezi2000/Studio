@@ -61,9 +61,10 @@ public class AlunoController {
         alunoRepository.save(aluno);
         if (aluno.getVirarCliente() == true) {
             attributes.addFlashAttribute("mensagem", "Aluno Cadastrado com Sucesso!");
+            Endereco endereco = new Endereco();
+            endereco.setAluno(aluno);
             return new ModelAndView("negociacao/endereco")
-                    .addObject(aluno)
-                    .addObject(new Endereco());
+                    .addObject(endereco);
         } else {
             return index(aluno);
         }
