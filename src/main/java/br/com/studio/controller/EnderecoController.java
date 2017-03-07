@@ -5,6 +5,8 @@ import br.com.studio.repository.EnderecoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -20,17 +22,22 @@ public class EnderecoController {
     private EnderecoRepository enderecoRepository;
 
     @PostMapping("/salvar")
-    public ModelAndView salvar(@Valid Endereco endereco, Aluno aluno, BindingResult result, RedirectAttributes attributes) {
+    public ModelAndView salvar(@Valid Endereco endereco, BindingResult result, RedirectAttributes attributes) {
         if (result.hasErrors()) {
 //            return index(endereco);
         }
         enderecoRepository.save(endereco);
         attributes.addFlashAttribute("mensagem", "Endereço Cadastrado com Sucesso!");
-        return new ModelAndView("redirect:/aluno/lista")
-                .addObject(aluno)
-                .addObject(new Endereco())
-                .addObject(new Contato())
-                .addObject(new Plano())
-                .addObject(new Historico());
+        return detalhe(endereco);
+    }
+
+    @GetMapping("/detalhe")
+    public ModelAndView detalhe(@PathVariable Endereco endereco) {
+        ModelAndView mv = new ModelAndView("negociacao/contato")
+//                .addObject(endereco)
+                .addObject(new Contato());
+//                .addObject(new Plano())
+//                .addObject(new Historico());
+        return mv;
     }
 }

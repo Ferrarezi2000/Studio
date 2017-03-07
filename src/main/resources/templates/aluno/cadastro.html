@@ -48,7 +48,7 @@
                 <div class="uk-margin" uk-grid="">
                     <div class="uk-width-1-4@s">
                         <label class="uk-form-label">Data Nascimento*</label>
-                        <input class="uk-input" type="date" th:field="*{dataNascimento}"/>
+                        <input class="uk-input" type="text" th:field="*{dataNascimento}"/>
                     </div>
                     <div class="uk-width-expand@s">
                         <label class="uk-form-label">Profissão</label>
@@ -73,15 +73,13 @@
                     <label class="uk-form-label">Observação</label>
                     <textarea class="uk-textarea" rows="5" placeholder="Observação" th:field="*{observacao}"/>
                 </div>
+                <div class="uk-margin uk-grid-small uk-child-width-auto" uk-grid="">
+                    <label><input class="uk-checkbox" type="checkbox" checked="" th:field="*{virarCliente}"/> Negociaçao?</label>
+                </div>
                 <hr class="uk-divider-icon"/>
                 <div class="uk-align-right">
                     <button class="uk-button uk-button-primary" type="submit">Salvar e Ativar</button>
                     <span uk-icon="icon: check"></span>
-                </div>
-                <div class="uk-align-left">
-                    <button class="uk-button uk-button-primary" type="submit" th:action="@{/aluno/salvarApenas}">
-                        Salvar
-                    </button>
                 </div>
             </form>
 

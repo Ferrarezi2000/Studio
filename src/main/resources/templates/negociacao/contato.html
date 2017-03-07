@@ -20,23 +20,23 @@
 <div class="uk-container">
 
     <div uk-grid="">
-        <!--Breadcrumb-->
-        <div uk-alert="">
-            <div class="uk-width-1-1" >
+        <div uk-grid="">
+            <div class="uk-width-1-1">
                 <h3 class="uk-heading-bullet">Negociação</h3>
             </div>
+            <div uk-alert="" class="uk-width-1-1">
+                <ul class="uk-breadcrumb uk-margin">
+                    <li><span>Dados Básico</span></li>
+                    <li><span>Endereço</span></li>
+                    <li><span class="uk-text-primary">Contato</span></li>
+                    <li><span>Plano</span></li>
+                    <li><span>Finalizar</span></li>
+                </ul>
+            </div>
 
-            <ul class="uk-breadcrumb uk-margin">
-                <li><span>Dados Básico</span></li>
-                <li><span>Endereço</span></li>
-                <li><span class="uk-text-primary">Contato</span></li>
-                <li><span>Plano</span></li>
-                <li><span>Finalizar</span></li>
-            </ul>
-        </div>
-
-        <div class="uk-width-expand">
-
+            <div class="uk-width-expand">
+                <div th:replace="contato/form :: contato"></div>
+            </div>
         </div>
     </div>
 </div>

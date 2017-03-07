@@ -2,7 +2,6 @@ package br.com.studio.model;
 
 import lombok.Data;
 import org.hibernate.validator.constraints.NotEmpty;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -45,4 +44,5 @@ public class Aluno implements Serializable {
 
     private String foto;
 
+    private Boolean virarCliente;
 }

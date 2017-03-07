@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.swing.text.DateFormatter;
 import javax.validation.Valid;
+import java.time.format.DateTimeFormatter;
 
 @Controller
 @RequestMapping("/aluno")
@@ -43,24 +45,21 @@ public class AlunoController {
         return mv;
     }
 
-    @GetMapping("/salvarApenas")
-    public ModelAndView salvarApenas(@Valid Aluno aluno, BindingResult result, RedirectAttributes attributes) {
-        if (result.hasErrors()) {
-            return index(aluno);
-        }
-        alunoRepository.save(aluno);
-        attributes.addFlashAttribute("mensagem", "Aluno Cadastrado com Sucesso!");
-        return index(new Aluno());
-    }
-
     @PostMapping("/salvar")
     public ModelAndView salvar(@Valid Aluno aluno, BindingResult result, RedirectAttributes attributes) {
+
         if (result.hasErrors()) {
             return index(aluno);
         }
         alunoRepository.save(aluno);
-        attributes.addFlashAttribute("mensagem", "Aluno Cadastrado com Sucesso!");
-        return detalhe(aluno);
+        if (aluno.getVirarCliente() == true) {
+            attributes.addFlashAttribute("mensagem", "Aluno Cadastrado com Sucesso!");
+            return new ModelAndView("negociacao/endereco")
+                    .addObject(aluno)
+                    .addObject(new Endereco());
+        } else {
+            return index(aluno);
+        }
     }
 
     @GetMapping("/{id}")
@@ -72,11 +71,11 @@ public class AlunoController {
 
     @GetMapping("/detalhe")
     public ModelAndView detalhe(@PathVariable Aluno aluno) {
-        ModelAndView mv = new ModelAndView("aluno/detalhe")
-                .addObject(new Endereco())
-                .addObject(new Contato())
-                .addObject(new Plano())
-                .addObject(new Historico());
+        ModelAndView mv = new ModelAndView("negociacao/endereco")
+                .addObject(new Endereco());
+//                .addObject(new Contato())
+//                .addObject(new Plano())
+//                .addObject(new Historico());
         return mv;
     }
 

@@ -20,12 +20,10 @@
 <div class="uk-container">
 
     <div uk-grid="">
-        <!--Breadcrumb-->
-        <div uk-alert="">
-            <div class="uk-width-1-1" >
-                <h3 class="uk-heading-bullet">Negociação</h3>
-            </div>
-
+        <div class="uk-width-1-1">
+            <h3 class="uk-heading-bullet">Negociação</h3>
+        </div>
+        <div uk-alert="" class="uk-width-1-1">
             <ul class="uk-breadcrumb uk-margin">
                 <li><span>Dados Básico</span></li>
                 <li><span class="uk-text-primary">Endereço</span></li>
@@ -36,7 +34,7 @@
         </div>
 
         <div class="uk-width-expand">
-
+            <div th:replace="endereco/form :: endereco"></div>
         </div>
     </div>
 </div>
