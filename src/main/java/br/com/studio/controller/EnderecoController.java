@@ -27,8 +27,11 @@ public class EnderecoController {
 //            return index(endereco);
         }
         enderecoRepository.save(endereco);
+        Contato contato = new Contato();
+        contato.setAluno(endereco.getAluno());
         attributes.addFlashAttribute("mensagem", "Endereço Cadastrado com Sucesso!");
-        return detalhe(endereco);
+        return new ModelAndView("negociacao/contato")
+                .addObject(contato);
     }
 
     @GetMapping("/detalhe")
