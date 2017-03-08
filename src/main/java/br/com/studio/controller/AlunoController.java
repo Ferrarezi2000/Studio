@@ -2,7 +2,10 @@ package br.com.studio.controller;
 
 import br.com.studio.model.*;
 import br.com.studio.repository.AlunoRepository;
+import br.com.studio.service.AlunoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.FormatterRegistry;
+import org.springframework.format.datetime.standard.DateTimeFormatterRegistrar;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,6 +26,9 @@ public class AlunoController {
 
     @Autowired
     private AlunoRepository alunoRepository;
+
+    @Autowired
+    private AlunoService alunoService;
 
     @GetMapping
     public ModelAndView index(Aluno aluno) {
@@ -56,9 +62,11 @@ public class AlunoController {
     @PostMapping("/salvar")
     public ModelAndView salvar(@Valid Aluno aluno, BindingResult result, RedirectAttributes attributes) {
         if (result.hasErrors()) {
-            return index(aluno);
+            return novo(aluno);
         }
+        alunoService.idade(aluno);
         alunoRepository.save(aluno);
+
         if (aluno.getVirarCliente() == true) {
             attributes.addFlashAttribute("mensagem", "Aluno Cadastrado com Sucesso!");
             Endereco endereco = new Endereco();

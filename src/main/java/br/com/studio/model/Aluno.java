@@ -1,6 +1,8 @@
 package br.com.studio.model;
 
+import br.com.caelum.stella.bean.validation.CPF;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
@@ -10,6 +12,7 @@ import java.time.LocalDate;
 
 @Entity
 @Data
+@NoArgsConstructor
 @Table(catalog = "studio", name = "aluno")
 public class Aluno implements Serializable {
 
@@ -23,6 +26,7 @@ public class Aluno implements Serializable {
     @NotEmpty(message = "Sobrenome é Obrigatório!")
     private String sobrenome;
 
+    @CPF(message = "Erro")
     @NotNull(message = "CPF é Obrigatório!")
     private String cpf;
 
@@ -45,4 +49,6 @@ public class Aluno implements Serializable {
     private String foto;
 
     private Boolean virarCliente;
+
+    private Integer idade;
 }

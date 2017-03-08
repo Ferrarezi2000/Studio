@@ -98,6 +98,12 @@
 			<version>${hibernate.version}</version>
 			<scope>compile</scope>
 		</dependency>
+
+		<dependency>
+			<groupId>br.com.caelum.stella</groupId>
+			<artifactId>caelum-stella-bean-validation</artifactId>
+			<version>2.1.2</version>
+		</dependency>
 	</dependencies>
 
 	<build>

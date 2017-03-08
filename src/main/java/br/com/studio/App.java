@@ -2,6 +2,9 @@ package br.com.studio;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.format.datetime.standard.DateTimeFormatterRegistrar;
+
+import java.time.format.DateTimeFormatter;
 
 @SpringBootApplication
 public class App {
