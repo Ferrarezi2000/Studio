@@ -5,7 +5,6 @@
 <head>
     <link th:href="@{/favicon.ico}" rel="shortcut icon"/>
     <link th:href="@{http://fonts.googleapis.com/icon?family=Material+Icons}" rel="stylesheet"/>
-    <!--<link type="text/css" rel="stylesheet" th:href="@{/css/materialize.css}" media="screen,projection"/>-->
     <link type="text/css" rel="stylesheet" th:href="@{/css/uikit.min.css}"/>
     <link type="text/css" rel="stylesheet" th:href="@{/css/animate.min.css}"/>
     <link type="text/css" rel="stylesheet" th:href="@{/css/pace.css}"/>
@@ -97,6 +96,7 @@
                                 <th>Nome</th>
                                 <th>Sobrenome</th>
                                 <th>CPF</th>
+                                <th>Idade</th>
                                 <th></th>
                             </tr>
                             </thead>
@@ -106,6 +106,7 @@
                                 <td th:text="${aluno.nome}"></td>
                                 <td th:text="${aluno.sobrenome}"></td>
                                 <td th:text="${aluno.cpf}"></td>
+                                <td th:text="${aluno.idade}"></td>
                                 <td>
                                     <div class="uk-invisible-hover uk-text-right">
                                         <a uk-icon="icon: info" title="Informações" uk-tooltip=""

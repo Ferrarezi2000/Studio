@@ -24,7 +24,8 @@ public class EnderecoController {
     @PostMapping("/salvar")
     public ModelAndView salvar(@Valid Endereco endereco, BindingResult result, RedirectAttributes attributes) {
         if (result.hasErrors()) {
-//            return index(endereco);
+            return new ModelAndView("negociacao/endereco")
+                    .addObject(endereco);
         }
         enderecoRepository.save(endereco);
         Contato contato = new Contato();
@@ -32,15 +33,5 @@ public class EnderecoController {
         attributes.addFlashAttribute("mensagem", "Endereço Cadastrado com Sucesso!");
         return new ModelAndView("negociacao/contato")
                 .addObject(contato);
-    }
-
-    @GetMapping("/detalhe")
-    public ModelAndView detalhe(@PathVariable Endereco endereco) {
-        ModelAndView mv = new ModelAndView("negociacao/contato")
-//                .addObject(endereco)
-                .addObject(new Contato());
-//                .addObject(new Plano())
-//                .addObject(new Historico());
-        return mv;
     }
 }

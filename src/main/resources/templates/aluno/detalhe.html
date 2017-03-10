@@ -7,12 +7,12 @@
 <head>
     <link th:href="@{/favicon.ico}" rel="shortcut icon"/>
     <link th:href="@{http://fonts.googleapis.com/icon?family=Material+Icons}" rel="stylesheet"/>
-    <!--<link type="text/css" rel="stylesheet" th:href="@{/css/materialize.css}" media="screen,projection"/>-->
     <link type="text/css" rel="stylesheet" th:href="@{/css/uikit.min.css}"/>
     <link type="text/css" rel="stylesheet" th:href="@{/css/animate.min.css}"/>
     <link type="text/css" rel="stylesheet" th:href="@{/css/pace.css}"/>
     <link type="text/css" rel="stylesheet" th:href="@{/css/studio.css}"/>
     <link type="text/css" rel="stylesheet" th:href="@{/images/icons.svg}"/>
+    <link type="text/css" rel="stylesheet" th:href="@{/css/meu.css}"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 </head>
 <body>
@@ -23,7 +23,7 @@
 
     <div uk-grid="">
         <!--<div class="uk-width-1-4@m">-->
-            <!--<div th:replace="fragments/quadro :: quadro"></div>-->
+        <!--<div th:replace="fragments/quadro :: quadro"></div>-->
         <!--</div>-->
         <div class="uk-width-expand">
             <div uk-alert=""><strong>Dados Básicos</strong>
@@ -35,7 +35,7 @@
                 <li>
                     <h3 class="uk-accordion-title">Endereço</h3>
                     <div class="uk-accordion-content">
-                        <a class="uk-button uk-button-default uk-align-right" uk-toggle="" href="#modal-endereco">Adicionar</a>
+                        <div th:replace="endereco/lista :: listaEndereco"></div>
                     </div>
                 </li>
                 <li>
@@ -47,7 +47,8 @@
                 <li>
                     <h3 class="uk-accordion-title">Plano</h3>
                     <div class="uk-accordion-content">
-                        <a class="uk-button uk-button-default uk-align-right" uk-toggle="" href="#modal-plano">Adicionar</a>
+                        <a class="uk-button uk-button-default uk-align-right" uk-toggle=""
+                           href="#modal-plano">Adicionar</a>
                     </div>
                 </li>
                 <li>
@@ -60,7 +61,6 @@
         </div>
     </div>
 </div>
-
 
 
 <!--Modal Endereco-->
