@@ -5,54 +5,33 @@
       xmlns:data="http://www.thymeleaf.org/extras/data"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
-    <link th:href="@{/favicon.ico}" rel="shortcut icon"/>
+    <!--Import Google Icon Font-->
     <link th:href="@{http://fonts.googleapis.com/icon?family=Material+Icons}" rel="stylesheet"/>
+    <!--Import materialize.css-->
     <!--<link type="text/css" rel="stylesheet" th:href="@{/css/materialize.css}" media="screen,projection"/>-->
     <link type="text/css" rel="stylesheet" th:href="@{/css/uikit.min.css}"/>
     <link type="text/css" rel="stylesheet" th:href="@{/css/animate.min.css}"/>
     <link type="text/css" rel="stylesheet" th:href="@{/css/pace.css}"/>
     <link type="text/css" rel="stylesheet" th:href="@{/css/studio.css}"/>
     <link type="text/css" rel="stylesheet" th:href="@{/images/icons.svg}"/>
+
+    <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 </head>
-<body>
-<div th:fragment="contato">
-    <form method="POST" th:action="@{/contato/salvar}"
-          th:object="${contato}">
-
-        <legend class="uk-legend">Contatos</legend>
-
-        <div th:unless="${#fields.detailedErrors().empty}">
-            <div th:replace="fragments/mensagemErroValidacao :: alerta"></div>
-        </div>
-
-
-        <input type="text" th:value="*{aluno.id}" th:field="*{aluno}"/>
-
-        <div class="uk-margin">
-            <input class="uk-input" type="text" placeholder="E-mail" th:field="*{email}"/>
-        </div>
-
-        <div class="uk-margin">
-            <input class="uk-input" type="text" placeholder="Telefone" th:field="*{telefone}"/>
-        </div>
-
-        <div class="uk-margin">
-            <input class="uk-input" type="text" placeholder="Celular" th:field="*{celular}"/>
-        </div>
-
-        <hr class="uk-divider-icon"/>
-        <div class="uk-align-right">
-            <button class="uk-button uk-button-default uk-modal-close" type="button">Cancelar</button>
-            <button class="uk-button uk-button-primary" type="submit">Cadastrar</button>
-        </div>
-    </form>
+<div th:fragment="alerta">
+    <div class="uk-alert-danger" uk-alert="">
+        <a class="uk-alert-close" uk-close=""></a>
+        <th:block th:each="detailedError : ${#fields.detailedErrors()}">
+            <div><span class="uk-margin-small-right" uk-icon="icon: info"></span>[[${detailedError.message}]]</div>
+        </th:block>
+    </div>
 </div>
-
-</body>
+<body>
+<!--Import jQuery before materialize.js-->
 <script type="text/javascript" th:src="@{https://code.jquery.com/jquery-2.1.1.min.js}"></script>
 <!--<script type="text/javascript" th:src="@{/js/materialize.js}"></script>-->
 <script type="text/javascript" th:src="@{/js/uikit.min.js}"></script>
 <script type="text/javascript" th:src="@{/js/jquery.js}"></script>
 <script type="text/javascript" th:src="@{/js/pace.js}"></script>
+</body>
 </html>

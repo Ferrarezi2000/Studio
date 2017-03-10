@@ -22,27 +22,24 @@
 
     <div uk-grid="">
         <!--<div class="uk-width-1-1">-->
-            <!--<h3 class="uk-heading-bullet">Negociação</h3>-->
+        <!--<h3 class="uk-heading-bullet">Negociação</h3>-->
         <!--</div>-->
         <!--<div uk-alert="" class="uk-width-1-1">-->
-            <!--<ul class="uk-breadcrumb uk-margin">-->
-                <!--<li><span>Dados Básico</span></li>-->
-                <!--<li><span class="uk-text-primary">Endereço</span></li>-->
-                <!--<li><span>Contato</span></li>-->
-                <!--<li><span>Plano</span></li>-->
-                <!--<li><span>Finalizar</span></li>-->
-            <!--</ul>-->
+        <!--<ul class="uk-breadcrumb uk-margin">-->
+        <!--<li><span>Dados Básico</span></li>-->
+        <!--<li><span class="uk-text-primary">Endereço</span></li>-->
+        <!--<li><span>Contato</span></li>-->
+        <!--<li><span>Plano</span></li>-->
+        <!--<li><span>Finalizar</span></li>-->
+        <!--</ul>-->
         <!--</div>-->
 
         <div class="uk-width-1-4@m">
             <div class="uk-card uk-card-default ">
                 <div class="uk-card-header">
                     <div class="uk-grid-small uk-flex-middle" uk-grid="">
-                        <div class="uk-width-auto">
-                            <img class="uk-border-circle" width="40" height="40" src="../docs/images/avatar.jpg"/>
-                        </div>
                         <div class="uk-width-expand">
-                            <h5 class="uk-margin-remove-bottom">Dados Pessoais</h5>
+                            <legend class="uk-legend">Aluno</legend>
                         </div>
                     </div>
                 </div>
@@ -52,15 +49,12 @@
                         <li th:text="${aluno.sobrenome}"></li>
                     </ul>
                 </div>
-                <div class="uk-card-footer">
-                    <a href="#" class="uk-button uk-button-text">Editar</a>
-                </div>
             </div>
         </div>
 
 
         <div class="uk-width-expand">
-            <div th:replace="endereco/form :: endereco"></div>
+                <div th:replace="endereco/form :: endereco"></div>
         </div>
     </div>
 </div>

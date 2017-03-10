@@ -17,31 +17,45 @@
 </head>
 <body>
 <div th:fragment="endereco">
-    <form method="POST" th:action="@{/endereco/salvar}"
-          th:object="${endereco}">
 
-        <legend class="uk-legend">Endereço</legend>
 
-        <input type="text" th:value="*{aluno.id}" th:field="*{aluno}"/>
+    <div class="uk-width-1-1">
+        <div class="uk-card uk-card-default ">
+            <div class="uk-card-header">
+                <div class="uk-grid-small uk-flex-middle" uk-grid="">
+                    <legend class="uk-legend">Endereço</legend>
+                </div>
+            </div>
+            <div class="uk-card-body">
+                <form method="POST" th:action="@{/endereco/salvar}"
+                      th:object="${endereco}">
+                    <div th:replace="fragments/mensagemErroValidacao :: alerta"></div>
 
-        <div class="uk-margin">
-            <input class="uk-input" type="text" placeholder="Rua*" th:field="*{rua}"/>
+                    <input type="text" th:value="*{aluno.id}" th:field="*{aluno}"/>
+
+                    <div class="uk-margin">
+                        <input class="uk-input" type="text" placeholder="Rua*" th:field="*{rua}"/>
+                    </div>
+
+                    <div class="uk-margin">
+                        <input class="uk-input" type="text" placeholder="Bairro*" th:field="*{bairro}"/>
+                    </div>
+
+                    <div class="uk-margin">
+                        <input class="uk-input" type="text" placeholder="Número*" th:field="*{numero}"/>
+                    </div>
+
+                    <hr class="uk-divider-icon"/>
+                    <div class="uk-align-right">
+                        <button class="uk-button uk-button-default uk-modal-close" type="button">Cancelar</button>
+                        <button class="uk-button uk-button-primary" type="submit">Salvar</button>
+                    </div>
+                </form>
+            </div>
         </div>
+    </div>
 
-        <div class="uk-margin">
-            <input class="uk-input" type="text" placeholder="Bairro*" th:field="*{bairro}"/>
-        </div>
 
-        <div class="uk-margin">
-            <input class="uk-input" type="text" placeholder="Número*" th:field="*{numero}"/>
-        </div>
-
-        <hr class="uk-divider-icon"/>
-        <div class="uk-align-right">
-            <button class="uk-button uk-button-default uk-modal-close" type="button">Cancelar</button>
-            <button class="uk-button uk-button-primary" type="submit">Salvar</button>
-        </div>
-    </form>
 </div>
 
 </body>

@@ -17,17 +17,20 @@ public class AlunoService {
     private AlunoRepository alunoRepository;
 
     @Transactional
-    public void teste (Aluno aluno){
+    public void teste(Aluno aluno) {
         LocalDate nascimento = aluno.getDataNascimento();
         DateTimeFormatter formatador = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         formatador.format(nascimento);
     }
 
-    public void idade(Aluno aluno){
-        LocalDate nascimento = aluno.getDataNascimento();
-        Period period = Period.between(LocalDate.now(), nascimento);
-        Integer idade = period.getYears();
-        aluno.setIdade(idade);
-        alunoRepository.save(aluno);
+    public void idade(Aluno aluno) {
+        if (aluno.getDataNascimento() != null) {
+            LocalDate nascimento = aluno.getDataNascimento();
+            Period period = Period.between(LocalDate.now(), nascimento);
+            Integer idade = period.getYears();
+            aluno.setIdade(idade);
+            alunoRepository.save(aluno);
+        } else {
+        }
     }
 }
