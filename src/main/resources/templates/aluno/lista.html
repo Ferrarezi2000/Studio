@@ -50,7 +50,7 @@
                     </div>
                 </div>
                 <div class="uk-card-footer">
-                    <a href="#modal-plano" class="uk-button uk-button-text">Novo Plano</a>
+                    <a href="#modal-plano" class="uk-button uk-button-text" uk-toggle="">Novo Plano</a>
                 </div>
             </div>
         </div>
@@ -148,7 +148,7 @@
 <div id="modal-plano" uk-modal="center: true">
     <div class="uk-modal-dialog">
         <button class="uk-modal-close-outside" type="button" uk-close=""></button>
-        <div th:replace="aluno/form :: plano"></div>
+        <div th:replace="plano/form :: plano"></div>
     </div>
 </div>
 

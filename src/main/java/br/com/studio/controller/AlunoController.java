@@ -1,11 +1,11 @@
 package br.com.studio.controller;
 
-import br.com.studio.model.*;
+import br.com.studio.model.Aluno;
+import br.com.studio.model.Endereco;
+import br.com.studio.model.Plano;
 import br.com.studio.repository.AlunoRepository;
 import br.com.studio.service.AlunoService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.format.FormatterRegistry;
-import org.springframework.format.datetime.standard.DateTimeFormatterRegistrar;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -31,12 +31,13 @@ public class AlunoController {
     private AlunoService alunoService;
 
     @GetMapping
-    public ModelAndView index(Aluno aluno) {
+    public ModelAndView index() {
         LocalDate agora = LocalDate.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         String data = agora.format(formatter);
         ModelAndView mv = new ModelAndView("aluno/lista")
                 .addObject("data", data)
+                .addObject(new Plano())
                 .addObject("alunos", alunoRepository.findAllByOrderByNome());
         return mv;
     }
@@ -47,7 +48,6 @@ public class AlunoController {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         String data = agora.format(formatter);
         ModelAndView mv = new ModelAndView("aluno/lista")
-                .addObject(new Aluno())
                 .addObject("data", data)
                 .addObject("alunos", alunoRepository.findAllByNomeOrderByNome(filtro));
         return mv;
@@ -74,7 +74,7 @@ public class AlunoController {
             return new ModelAndView("negociacao/endereco")
                     .addObject(endereco);
         } else {
-            return index(aluno);
+            return index();
         }
     }
 

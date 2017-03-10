@@ -16,17 +16,17 @@ public class AlunoService {
     @Autowired
     private AlunoRepository alunoRepository;
 
-    @Transactional
-    public void teste(Aluno aluno) {
-        LocalDate nascimento = aluno.getDataNascimento();
-        DateTimeFormatter formatador = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        formatador.format(nascimento);
-    }
+//    @Transactional
+//    public void teste(Aluno aluno) {
+//        LocalDate nascimento = aluno.getDataNascimento();
+//        DateTimeFormatter formatador = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+//        formatador.format(nascimento);
+//    }
 
     public void idade(Aluno aluno) {
         if (aluno.getDataNascimento() != null) {
             LocalDate nascimento = aluno.getDataNascimento();
-            Period period = Period.between(LocalDate.now(), nascimento);
+            Period period = Period.between(nascimento, LocalDate.now());
             Integer idade = period.getYears();
             aluno.setIdade(idade);
             alunoRepository.save(aluno);

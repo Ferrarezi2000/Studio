@@ -4,11 +4,13 @@ import br.com.caelum.stella.bean.validation.CPF;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.Date;
 
 @Entity
 @Data
@@ -38,6 +40,7 @@ public class Aluno implements Serializable {
 
 //    @NotEmpty(message = "Data de Nascimento é Obrigatório!")
     @Column(name = "data_nascimento")
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalDate dataNascimento;
 
 //    @NotEmpty(message = "Data de Início das Aulas é Obrigatório!")
