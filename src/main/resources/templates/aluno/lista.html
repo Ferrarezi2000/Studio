@@ -49,6 +49,14 @@
                     </div>
                 </div>
                 <div class="uk-card-footer">
+                    <div th:if="${planos.empty}" class="uk-flex uk-flex-center uk-flex-middle uk-margin">
+                        <span uk-icon="icon: info"></span>
+                        <span> Nenhum Aluno Cadastrado!</span>
+                    </div>
+                    <div th:each="plano : ${planos}" class="uk-flex uk-flex-center uk-flex-middle uk-margin">
+                        <span th:text="${plano.nome}"></span>
+                        <span th:text="${plano.valor}"></span>
+                    </div>
                     <a href="#modal-plano" class="uk-button uk-button-text" uk-toggle="">Novo Plano</a>
                 </div>
             </div>

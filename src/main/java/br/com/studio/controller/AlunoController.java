@@ -4,6 +4,7 @@ import br.com.studio.model.Aluno;
 import br.com.studio.model.Endereco;
 import br.com.studio.model.Plano;
 import br.com.studio.repository.AlunoRepository;
+import br.com.studio.repository.PlanoRepository;
 import br.com.studio.service.AlunoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -30,6 +31,9 @@ public class AlunoController {
     @Autowired
     private AlunoService alunoService;
 
+    @Autowired
+    private PlanoRepository planoRepository;
+
     @GetMapping
     public ModelAndView index() {
         LocalDate agora = LocalDate.now();
@@ -38,6 +42,7 @@ public class AlunoController {
         ModelAndView mv = new ModelAndView("aluno/lista")
                 .addObject("data", data)
                 .addObject(new Plano())
+                .addObject("planos", planoRepository.findAll())
                 .addObject("alunos", alunoRepository.findAllByOrderByNome());
         return mv;
     }
@@ -49,6 +54,8 @@ public class AlunoController {
         String data = agora.format(formatter);
         ModelAndView mv = new ModelAndView("aluno/lista")
                 .addObject("data", data)
+                .addObject(new Plano())
+                .addObject("planos", planoRepository.findAll())
                 .addObject("alunos", alunoRepository.findAllByNomeOrderByNome(filtro));
         return mv;
     }

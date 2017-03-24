@@ -18,24 +18,33 @@
 <body>
 <div th:fragment="plano">
 
-    <div class="uk-card-body">
-        <form method="POST" class="uk-card-body uk-grid-small" th:action="@{/plano/salvar}"
-              th:object="${plano}">
+    <div class="uk-width-1-1">
+        <div class="uk-card uk-card-default ">
+            <div class="uk-card-header">
+                <div class="uk-grid-small uk-flex-middle" uk-grid="">
+                    <legend class="uk-legend">Plano</legend>
+                </div>
+            </div>
+            <div class="uk-card-body">
+                <form method="POST" th:action="@{/plano/salvar}"
+                      th:object="${plano}">
 
-            <legend class="uk-legend">Plano</legend>
+                    <div class="uk-margin">
+                        <input class="uk-input" type="text" placeholder="Nome*" th:field="*{nome}"/>
+                    </div>
 
-            <div class="uk-margin">
-                <input class="uk-input" type="text" placeholder="Nome*" th:field="*{nome}" th:required="true"/>
+                    <div class="uk-margin">
+                        <input class="uk-input" type="text" placeholder="Valor*" th:field="*{valor}"/>
+                    </div>
+
+                    <hr class="uk-divider-icon"/>
+                    <div class="uk-align-right">
+                        <button class="uk-button uk-button-default uk-modal-close" type="button">Cancelar</button>
+                        <button class="uk-button uk-button-primary" type="submit">Salvar</button>
+                    </div>
+                </form>
             </div>
-            <div class="uk-margin">
-                <input class="uk-input" type="text" placeholder="Valor*" th:field="*{valor}" th:required="true"/>
-            </div>
-            <hr class="uk-divider-icon"/>
-            <div class="uk-align-right">
-                <button class="uk-button uk-button-default uk-modal-close" type="button">Cancelar</button>
-                <button class="uk-button uk-button-primary" type="submit">Salvar</button>
-            </div>
-        </form>
+        </div>
     </div>
 
 </div>
