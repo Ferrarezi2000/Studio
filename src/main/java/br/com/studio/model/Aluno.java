@@ -1,20 +1,19 @@
 package br.com.studio.model;
 
-import br.com.caelum.stella.bean.validation.CPF;
 import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
 import org.hibernate.validator.constraints.NotEmpty;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 import java.io.Serializable;
-import java.time.LocalDate;
+import java.math.BigDecimal;
 import java.util.Date;
 
 @Entity
+@Getter
+@Setter
 @Data
-@NoArgsConstructor
 @Table(catalog = "studio", name = "aluno")
 public class Aluno implements Serializable {
 
@@ -22,36 +21,63 @@ public class Aluno implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotEmpty(message = "Nome é Obrigatório!")
+    @NotEmpty
     private String nome;
 
-    @NotEmpty(message = "Sobrenome é Obrigatório!")
+    @NotEmpty
     private String sobrenome;
 
-    @CPF(message = "Erro")
-    @NotNull(message = "CPF é Obrigatório!")
-    private String cpf;
-
-    private String rg;
-
+    @NotEmpty
     private String profissao;
 
-    private String observacao;
-
-//    @NotEmpty(message = "Data de Nascimento é Obrigatório!")
     @Column(name = "data_nascimento")
-    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
-    private LocalDate dataNascimento;
+    private Date dataNascimento;
 
-//    @NotEmpty(message = "Data de Início das Aulas é Obrigatório!")
     @Column(name = "data_inicio_aula")
-    private LocalDate dataInicio;
+    private Date dataInicio;
+
+    @Column(name = "segunda_hora")
+    private String segundaHora;
+
+    @Column(name = "terca_hora")
+    private String tercaHora;
+
+    @Column(name = "quarta_hora")
+    private String quartaHora;
+
+    @Column(name = "quinta_hora")
+    private String quintaHora;
+
+    @Column(name = "sexta_hora")
+    private String sextaHora;
+
+    private Boolean segunda;
+
+    private Boolean terca;
+
+    private Boolean quarta;
+
+    private Boolean quinta;
+
+    private Boolean sexta;
 
     private Boolean ativo;
 
-    private String foto;
+    private String telefone;
 
-    private Boolean virarCliente;
+    @Column(name = "qtda_aulas_mensais")
+    private Integer qtdAulasMensais;
 
-    private Integer idade;
+    private String plano;
+
+    private String professor;
+
+    private BigDecimal desconto;
+
+    @Column(name = "valor_plano")
+    private BigDecimal valorPlano;
+
+    @Column(name = "valor_plano_desconto")
+    private BigDecimal valorPlanoDesconto;
+
 }

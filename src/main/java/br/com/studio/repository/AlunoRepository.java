@@ -9,5 +9,7 @@ public interface AlunoRepository extends JpaRepository<Aluno, Long> {
 
      List<Aluno> findAllByOrderByNome();
 
+     List<Aluno> findAllByAtivo(Boolean ativo);
+
      List<Aluno> findAllByNomeOrderByNome(String filtro);
 }
