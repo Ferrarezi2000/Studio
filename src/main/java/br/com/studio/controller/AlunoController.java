@@ -1,26 +1,17 @@
 package br.com.studio.controller;
 
 import br.com.studio.model.Aluno;
-import br.com.studio.model.Endereco;
-import br.com.studio.model.Plano;
+import br.com.studio.model.ResponseRest;
 import br.com.studio.repository.AlunoRepository;
-import br.com.studio.repository.PlanoRepository;
 import br.com.studio.service.AlunoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
-import javax.validation.Valid;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
+import org.springframework.util.Assert;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
+@CrossOrigin
 @RequestMapping("/aluno")
 public class AlunoController {
 
@@ -31,65 +22,105 @@ public class AlunoController {
     @Autowired
     private AlunoService alunoService;
 
-    @Autowired
-    private PlanoRepository planoRepository;
+    @GetMapping("/ativos")
+    public ResponseEntity<?> listarAtivos() {
 
-    @GetMapping
-    public ModelAndView index() {
-        LocalDate agora = LocalDate.now();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        String data = agora.format(formatter);
-        ModelAndView mv = new ModelAndView("aluno/lista")
-                .addObject("data", data)
-                .addObject(new Plano())
-                .addObject("planos", planoRepository.findAll())
-                .addObject("alunos", alunoRepository.findAllByOrderByNome());
-        return mv;
+        Boolean ativo = true;
+        return ResponseRest.object(
+                alunoRepository.findAllByAtivo(ativo)
+        );
     }
 
-    @GetMapping("/filtro")
-    public ModelAndView filtro(String filtro) {
-        LocalDate agora = LocalDate.now();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        String data = agora.format(formatter);
-        ModelAndView mv = new ModelAndView("aluno/lista")
-                .addObject("data", data)
-                .addObject(new Plano())
-                .addObject("planos", planoRepository.findAll())
-                .addObject("alunos", alunoRepository.findAllByNomeOrderByNome(filtro));
-        return mv;
+    @GetMapping("/inativos")
+    public ResponseEntity<?> listarInativos() {
+
+        Boolean inativo = false;
+        return ResponseRest.object(
+                alunoRepository.findAllByAtivo(inativo)
+        );
     }
 
-    @GetMapping("/novo")
-    public ModelAndView novo(Aluno aluno) {
-        ModelAndView mv = new ModelAndView("aluno/cadastro");
-        return mv;
-    }
+    @PostMapping
+    public ResponseEntity<?> save(@RequestBody Aluno dto){
+        Aluno aluno = new Aluno();
 
-    @PostMapping("/salvar")
-    public ModelAndView salvar(@Valid Aluno aluno, BindingResult result, RedirectAttributes attributes) {
-        if (result.hasErrors()) {
-            return novo(aluno);
-        }
-        alunoService.idade(aluno);
+        aluno.setAtivo(true);
+
+        aluno.setNome(dto.getNome());
+        aluno.setSobrenome(dto.getSobrenome());
+        aluno.setProfissao(dto.getProfissao());
+        aluno.setProfessor(dto.getProfessor());
+        aluno.setDataInicio(dto.getDataInicio());
+        aluno.setDataNascimento(dto.getDataNascimento());
+        aluno.setDesconto(dto.getDesconto());
+
+        alunoService.adicionarValorPlano(dto);
+        aluno.setValorPlano(dto.getValorPlano());
+        aluno.setValorPlanoDesconto(dto.getValorPlanoDesconto());
+
+        aluno.setSegunda(dto.getSegunda());
+        aluno.setTerca(dto.getTerca());
+        aluno.setQuarta(dto.getQuarta());
+        aluno.setQuinta(dto.getQuinta());
+        aluno.setSexta(dto.getSexta());
+
+        aluno.setSegundaHora(dto.getSegundaHora());
+        aluno.setTercaHora(dto.getTercaHora());
+        aluno.setQuartaHora(dto.getQuartaHora());
+        aluno.setQuintaHora(dto.getQuintaHora());
+        aluno.setSextaHora(dto.getSextaHora());
+
+        aluno.setQtdAulasMensais(dto.getQtdAulasMensais());
         alunoRepository.save(aluno);
+        return ResponseRest.ok("Aluno salvo com sucesso!");
+    }
 
-        if (aluno.getVirarCliente() == true) {
-            attributes.addFlashAttribute("mensagem", "Aluno Cadastrado com Sucesso!");
-            Endereco endereco = new Endereco();
-            endereco.setAluno(aluno);
-            return new ModelAndView("negociacao/endereco")
-                    .addObject(endereco);
-        } else {
-            return index();
-        }
+    @PutMapping("/{id}")
+    public ResponseEntity<?> alterar(@PathVariable("id") Aluno aluno, @RequestBody Aluno dto){
+        Assert.notNull(aluno, "Aluno inexistente.");
+
+        aluno.setAtivo(dto.getAtivo());
+
+        aluno.setNome(dto.getNome());
+        aluno.setSobrenome(dto.getSobrenome());
+        aluno.setProfissao(dto.getProfissao());
+        aluno.setProfessor(dto.getProfessor());
+        aluno.setDataInicio(dto.getDataInicio());
+        aluno.setDataNascimento(dto.getDataNascimento());
+        aluno.setDesconto(dto.getDesconto());
+
+        alunoService.adicionarValorPlano(dto);
+        aluno.setValorPlano(dto.getValorPlano());
+        aluno.setValorPlanoDesconto(dto.getValorPlanoDesconto());
+
+        aluno.setSegunda(dto.getSegunda());
+        aluno.setTerca(dto.getTerca());
+        aluno.setQuarta(dto.getQuarta());
+        aluno.setQuinta(dto.getQuinta());
+        aluno.setSexta(dto.getSexta());
+
+        aluno.setSegundaHora(dto.getSegundaHora());
+        aluno.setTercaHora(dto.getTercaHora());
+        aluno.setQuartaHora(dto.getQuartaHora());
+        aluno.setQuintaHora(dto.getQuintaHora());
+        aluno.setSextaHora(dto.getSextaHora());
+
+        aluno.setQtdAulasMensais(dto.getQtdAulasMensais());
+        alunoRepository.save(aluno);
+        return ResponseRest.ok("Aluno atualizado com sucesso!");
     }
 
     @GetMapping("/{id}")
-    public ModelAndView editar(@PathVariable("id") Aluno aluno) {
-        ModelAndView mv = novo(aluno);
-        mv.addObject(aluno);
-        return mv;
+    public ResponseEntity<?> buscar(@PathVariable("id") Aluno aluno){
+        Assert.notNull(aluno, "Aluno não encontrado.");
+        return ResponseRest.object(aluno);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> deletar(@PathVariable("id") Aluno aluno){
+        Assert.notNull(aluno, "Aluno não encontrado.");
+        alunoRepository.delete(aluno);
+        return ResponseRest.ok("Aluno excluído!");
     }
 
 }
