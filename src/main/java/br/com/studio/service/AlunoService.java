@@ -4,6 +4,7 @@ import br.com.studio.model.Aluno;
 import br.com.studio.repository.AlunoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 
@@ -14,6 +15,7 @@ public class AlunoService {
     private AlunoRepository alunoRepository;
 
     public void adicionarValorPlano(Aluno dto){
+        Assert.isNull(dto.getPlano(), "O Plano não pode ser nulo!");
       if (dto.getPlano().equals("Ouro")){
            dto.setValorPlano(new BigDecimal(50.00));
            adicionarValorPlanoDesconto(dto);
