@@ -1,16 +1,20 @@
 package br.com.studio.controller;
 
+import br.com.studio.dto.AlunoDTO;
 import br.com.studio.model.Aluno;
+import br.com.studio.model.MapBuilder;
 import br.com.studio.model.ResponseRest;
 import br.com.studio.repository.AlunoRepository;
 import br.com.studio.service.AlunoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.*;
 
-@Controller
+import java.util.List;
+import java.util.Map;
+
+@RestController
 @CrossOrigin
 @RequestMapping("/aluno")
 public class AlunoController {
@@ -24,24 +28,42 @@ public class AlunoController {
 
     @GetMapping("/ativos")
     public ResponseEntity<?> listarAtivos() {
+        List<Aluno> alunos = alunoRepository.findAllByAtivo(true);
+        int total = alunos.size();
 
-        Boolean ativo = true;
-        return ResponseRest.object(
-                alunoRepository.findAllByAtivo(ativo)
-        );
+       Double somaPlanos =  alunoService.valorTotalPlano(alunos);
+       Double somaPlanosDesconto = alunoService.valorTotalPlanoDesconto(alunos);
+       long ouro = alunoService.teste(alunos);
+
+        Map retorno = MapBuilder.build()
+                .add("total", total)
+                .add("somaPlanos", somaPlanos)
+                .add("ouro", ouro)
+                .add("somaPlanosDesconto", somaPlanosDesconto)
+                .add("alunos", alunos);
+        return ResponseRest.object(retorno);
     }
 
     @GetMapping("/inativos")
     public ResponseEntity<?> listarInativos() {
 
-        Boolean inativo = false;
-        return ResponseRest.object(
-                alunoRepository.findAllByAtivo(inativo)
-        );
+        List<Aluno> alunos = alunoRepository.findAllByAtivo(false);
+        int total = alunos.size();
+
+        Double somaPlanos =  alunoService.valorTotalPlano(alunos);
+        Double somaPlanosDesconto = alunoService.valorTotalPlanoDesconto(alunos);
+
+        Map retorno = MapBuilder.build()
+                .add("total", total)
+                .add("somaPlanos", somaPlanos)
+                .add("somaPlanosDesconto", somaPlanosDesconto)
+                .add("alunos", alunos);
+
+        return ResponseRest.object(retorno);
     }
 
     @PostMapping
-    public ResponseEntity<?> save(@RequestBody Aluno dto){
+    public ResponseEntity<?> save(@RequestBody AlunoDTO dto) {
         Aluno aluno = new Aluno();
 
         aluno.setAtivo(true);
@@ -76,7 +98,7 @@ public class AlunoController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<?> alterar(@PathVariable("id") Aluno aluno, @RequestBody Aluno dto){
+    public ResponseEntity<?> alterar(@PathVariable("id") Aluno aluno, @RequestBody AlunoDTO dto) {
         Assert.notNull(aluno, "Aluno inexistente.");
 
         aluno.setAtivo(dto.getAtivo());
@@ -111,13 +133,13 @@ public class AlunoController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<?> buscar(@PathVariable("id") Aluno aluno){
+    public ResponseEntity<?> buscar(@PathVariable("id") Aluno aluno) {
         Assert.notNull(aluno, "Aluno não encontrado.");
         return ResponseRest.object(aluno);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> deletar(@PathVariable("id") Aluno aluno){
+    public ResponseEntity<?> deletar(@PathVariable("id") Aluno aluno) {
         Assert.notNull(aluno, "Aluno não encontrado.");
         alunoRepository.delete(aluno);
         return ResponseRest.ok("Aluno excluído!");

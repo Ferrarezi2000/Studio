@@ -1,32 +1,24 @@
-package br.com.studio.model;
+package br.com.studio.dto;
 
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
-import org.hibernate.validator.constraints.NotEmpty;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Table;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 
-@Entity
 @Getter
 @Setter
 @Table(catalog = "studio", name = "aluno")
-public class Aluno implements Serializable {
+public class AlunoDTO implements Serializable {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
 
-    @NotEmpty
     private String nome;
 
-    @NotEmpty
     private String sobrenome;
 
-    @NotEmpty
     private String profissao;
 
     @Column(name = "data_nascimento")
