@@ -1,6 +1,5 @@
 package br.com.studio.model;
 
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.validator.constraints.NotEmpty;
@@ -30,9 +29,11 @@ public class Aluno implements Serializable {
     private String profissao;
 
     @Column(name = "data_nascimento")
+    @Temporal(TemporalType.DATE)
     private Date dataNascimento;
 
     @Column(name = "data_inicio_aula")
+    @Temporal(TemporalType.DATE)
     private Date dataInicio;
 
     @Column(name = "segunda_hora")
