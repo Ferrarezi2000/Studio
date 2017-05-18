@@ -74,11 +74,13 @@ public class AlunoController {
         aluno.setProfessor(dto.getProfessor());
         aluno.setDataInicio(dto.getDataInicio());
         aluno.setDataNascimento(dto.getDataNascimento());
-        aluno.setDesconto(dto.getDesconto());
+        aluno.setPlano(dto.getPlano());
 
+        aluno.setDesconto(dto.getDesconto());
         alunoService.adicionarValorPlano(dto);
         aluno.setValorPlano(dto.getValorPlano());
         aluno.setValorPlanoDesconto(dto.getValorPlanoDesconto());
+        aluno.setQtdAulasMensais(dto.getQtdAulasMensais());
 
         aluno.setSegunda(dto.getSegunda());
         aluno.setTerca(dto.getTerca());
@@ -92,9 +94,8 @@ public class AlunoController {
         aluno.setQuintaHora(dto.getQuintaHora());
         aluno.setSextaHora(dto.getSextaHora());
 
-        aluno.setQtdAulasMensais(dto.getQtdAulasMensais());
         alunoRepository.save(aluno);
-        return ResponseRest.ok("Aluno salvo com sucesso!");
+        return ResponseRest.created("Aluno salvo com sucesso!");
     }
 
     @PutMapping("/{id}")
@@ -109,11 +110,13 @@ public class AlunoController {
         aluno.setProfessor(dto.getProfessor());
         aluno.setDataInicio(dto.getDataInicio());
         aluno.setDataNascimento(dto.getDataNascimento());
-        aluno.setDesconto(dto.getDesconto());
+        aluno.setPlano(dto.getPlano());
 
+        aluno.setDesconto(dto.getDesconto());
         alunoService.adicionarValorPlano(dto);
         aluno.setValorPlano(dto.getValorPlano());
         aluno.setValorPlanoDesconto(dto.getValorPlanoDesconto());
+        aluno.setQtdAulasMensais(dto.getQtdAulasMensais());
 
         aluno.setSegunda(dto.getSegunda());
         aluno.setTerca(dto.getTerca());
@@ -127,7 +130,6 @@ public class AlunoController {
         aluno.setQuintaHora(dto.getQuintaHora());
         aluno.setSextaHora(dto.getSextaHora());
 
-        aluno.setQtdAulasMensais(dto.getQtdAulasMensais());
         alunoRepository.save(aluno);
         return ResponseRest.ok("Aluno atualizado com sucesso!");
     }

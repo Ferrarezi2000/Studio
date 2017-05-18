@@ -1,5 +1,6 @@
 package br.com.studio.model;
 
+import br.com.studio.dto.AlunoDTO;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.validator.constraints.NotEmpty;
