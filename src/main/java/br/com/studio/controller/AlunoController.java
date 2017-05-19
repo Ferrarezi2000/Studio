@@ -134,10 +134,15 @@ public class AlunoController {
         return ResponseRest.ok("Aluno atualizado com sucesso!");
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/info/{id}")
     public ResponseEntity<?> buscar(@PathVariable("id") Aluno aluno) {
         Assert.notNull(aluno, "Aluno não encontrado.");
-        return ResponseRest.object(aluno);
+        alunoService.calculoIdade(aluno);
+        int idade = alunoService.getIdade();
+        Map retorno = MapBuilder.build()
+                .add("idadeSelecionado", idade)
+                .add("alunoSelecionado", aluno);
+        return ResponseRest.object(retorno);
     }
 
     @DeleteMapping("/{id}")

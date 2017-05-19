@@ -3,10 +3,13 @@ package br.com.studio.service;
 import br.com.studio.dto.AlunoDTO;
 import br.com.studio.model.Aluno;
 import br.com.studio.repository.AlunoRepository;
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -15,6 +18,9 @@ public class AlunoService {
 
     @Autowired
     private AlunoRepository alunoRepository;
+
+    @Getter @Setter
+    public int idade;
 
     public void adicionarValorPlano(AlunoDTO dto) {
         if (dto.getPlano().equals("Bronze")) {
@@ -58,5 +64,11 @@ public class AlunoService {
         Stream<Aluno> streamAlunos = alunos.parallelStream();
         long testendo = streamAlunos.filter(a -> a.getPlano().equals("Ouro")).map(a -> a.getNome()).count();
         return testendo;
+    }
+
+    public void calculoIdade(Aluno aluno){
+        int anoAtual = new Date().getYear();
+        int nascimento = aluno.getDataNascimento().getYear();
+        idade = anoAtual - nascimento;
     }
 }
