@@ -62,8 +62,8 @@ public class AlunoController {
         return ResponseRest.object(retorno);
     }
 
-    @PostMapping
-    public ResponseEntity<?> save(@RequestBody AlunoDTO dto) {
+    @PostMapping("/cadastro")
+    public ResponseEntity<?> cadastrar(@RequestBody AlunoDTO dto) {
         Aluno aluno = new Aluno();
 
         aluno.setAtivo(true);
