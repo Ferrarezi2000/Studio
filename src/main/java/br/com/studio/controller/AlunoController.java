@@ -140,7 +140,7 @@ public class AlunoController {
         alunoService.calculoIdade(aluno);
         int idade = alunoService.getIdade();
         Map retorno = MapBuilder.build()
-                .add("idadeSelecionado", idade)
+                .add("alunoIdade", idade)
                 .add("alunoSelecionado", aluno);
         return ResponseRest.object(retorno);
     }
