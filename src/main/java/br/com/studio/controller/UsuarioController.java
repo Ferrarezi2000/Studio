@@ -26,7 +26,6 @@ public class UsuarioController {
     }
 
 
-
     @PostMapping
     public ResponseEntity<?> save(@RequestBody UsuarioDTO dto) {
         Usuario usuario = new Usuario();
@@ -46,5 +45,13 @@ public class UsuarioController {
         return ResponseRest.object(usuario);
     }
 
+    @GetMapping("/info/{senha}")
+    public ResponseEntity<?> buscarSenha(@PathVariable("senha") Integer senha) {
+
+        Assert.notNull(senha, "A Senha não poder ser vazia");
+        Usuario usuario = usuarioRepository.findOneBySenha(senha);
+        Assert.notNull(usuario, "Usuário não encontrado.");
+        return ResponseRest.object(usuario);
+    }
 
 }

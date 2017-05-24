@@ -2,6 +2,7 @@ package br.com.studio.model;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
 
@@ -15,7 +16,12 @@ public class Usuario {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotEmpty
     private String nome;
 
-    private String senha;
+    @NotEmpty
+    private String sobrenome;
+
+    @NotEmpty
+    private Integer senha;
 }
