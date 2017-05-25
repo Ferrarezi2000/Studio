@@ -17,7 +17,7 @@ import java.util.Map;
 @RestController
 @CrossOrigin
 @RequestMapping("/aluno")
-public class AlunoController {
+public class AlunoController extends AbstractRestController{
 
 
     @Autowired
@@ -63,10 +63,12 @@ public class AlunoController {
     }
 
     @PostMapping("/cadastro")
-    public ResponseEntity<?> cadastrar(@RequestBody AlunoDTO dto) {
+    public ResponseEntity<?> cadastrar(@RequestBody AlunoDTO dto, String nome) {
         Aluno aluno = new Aluno();
 
         aluno.setAtivo(true);
+
+        aluno.setUsuarioCadastro(dto.getUsuarioCadastro());
 
         aluno.setNome(dto.getNome());
         aluno.setSobrenome(dto.getSobrenome());
@@ -103,6 +105,8 @@ public class AlunoController {
         Assert.notNull(aluno, "Aluno inexistente.");
 
         aluno.setAtivo(dto.getAtivo());
+
+        aluno.setUsuarioCadastro(dto.getUsuarioAlteracao());
 
         aluno.setNome(dto.getNome());
         aluno.setSobrenome(dto.getSobrenome());

@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @CrossOrigin
 @RequestMapping("/dashboard")
-public class DashboardController {
+public class DashboardController extends AbstractRestController{
 
     @Autowired
     private AlunoRepository alunoRepository;

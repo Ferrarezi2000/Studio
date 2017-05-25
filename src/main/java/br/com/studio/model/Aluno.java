@@ -81,4 +81,10 @@ public class Aluno implements Serializable {
     @Column(name = "valor_plano_desconto")
     private BigDecimal valorPlanoDesconto;
 
+    @Column(name = "usuario_cadastro")
+    private String usuarioCadastro;
+
+    @Column(name = "usuario_alteracao")
+    private String usuarioAlteracao;
+
 }
