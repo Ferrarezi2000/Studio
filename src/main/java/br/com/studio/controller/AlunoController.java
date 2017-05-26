@@ -73,10 +73,12 @@ public class AlunoController extends AbstractRestController{
         aluno.setNome(dto.getNome());
         aluno.setSobrenome(dto.getSobrenome());
         aluno.setProfissao(dto.getProfissao());
+        aluno.setTelefone(dto.getTelefone());
+        aluno.setDataNascimento(dto.getDataNascimento());
+
+        aluno.setPlano(dto.getPlano());
         aluno.setProfessor(dto.getProfessor());
         aluno.setDataInicio(dto.getDataInicio());
-        aluno.setDataNascimento(dto.getDataNascimento());
-        aluno.setPlano(dto.getPlano());
 
         aluno.setDesconto(dto.getDesconto());
         alunoService.adicionarValorPlano(dto);
