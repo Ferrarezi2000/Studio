@@ -108,7 +108,7 @@ public class AlunoController extends AbstractRestController{
 
         aluno.setAtivo(dto.getAtivo());
 
-        aluno.setUsuarioCadastro(dto.getUsuarioAlteracao());
+        aluno.setUsuarioAlteracao(dto.getUsuarioAlteracao());
 
         aluno.setNome(dto.getNome());
         aluno.setSobrenome(dto.getSobrenome());

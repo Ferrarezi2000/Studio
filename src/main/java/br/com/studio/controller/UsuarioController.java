@@ -50,7 +50,7 @@ public class UsuarioController extends AbstractRestController{
 
         Assert.notNull(senha, "A Senha não poder ser vazia");
         Usuario usuario = usuarioRepository.findOneBySenha(senha);
-        Assert.notNull(usuario, "Usuário não encontrado.");
+        Assert.notNull(usuario, "Senha incorreta.");
         return ResponseRest.object(usuario);
     }
 
