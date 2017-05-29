@@ -23,23 +23,43 @@ public class AlunoService {
     public int idade;
 
     public void adicionarValorPlano(AlunoDTO dto) {
-        if (dto.getPlano().equals("Bronze")) {
-            dto.setValorPlano(new BigDecimal(50.00));
-            dto.setQtdAulasMensais(1);
-        }
-        if (dto.getPlano().equals("Prata")) {
-            dto.setValorPlano(new BigDecimal(100.00));
-            dto.setQtdAulasMensais(2);
-        }
-        if (dto.getPlano().equals("Ouro")) {
-            dto.setValorPlano(new BigDecimal(150.00));
-            dto.setQtdAulasMensais(3);
-        }
-        if (dto.getPlano().equals("Especial")) {
-            dto.setValorPlano(new BigDecimal(200.00));
-            dto.setQtdAulasMensais(4);
+
+        switch (dto.getPlano()){
+            case "Bronze":
+                dto.setValorPlano(new BigDecimal(50.00));
+                dto.setQtdAulasMensais(1);
+
+            case "Prata":
+                dto.setValorPlano(new BigDecimal(100.00));
+                dto.setQtdAulasMensais(2);
+
+            case "Ouro":
+                dto.setValorPlano(new BigDecimal(150.00));
+                dto.setQtdAulasMensais(3);
+
+            case "Especial":
+                dto.setValorPlano(new BigDecimal(200.00));
+                dto.setQtdAulasMensais(4);
         }
         adicionarValorPlanoDesconto(dto);
+
+//        if (dto.getPlano().equals("Bronze")) {
+//            dto.setValorPlano(new BigDecimal(50.00));
+//            dto.setQtdAulasMensais(1);
+//        }
+//        if (dto.getPlano().equals("Prata")) {
+//            dto.setValorPlano(new BigDecimal(100.00));
+//            dto.setQtdAulasMensais(2);
+//        }
+//        if (dto.getPlano().equals("Ouro")) {
+//            dto.setValorPlano(new BigDecimal(150.00));
+//            dto.setQtdAulasMensais(3);
+//        }
+//        if (dto.getPlano().equals("Especial")) {
+//            dto.setValorPlano(new BigDecimal(200.00));
+//            dto.setQtdAulasMensais(4);
+//        }
+//        adicionarValorPlanoDesconto(dto);
     }
 
     public void adicionarValorPlanoDesconto(AlunoDTO dto) {
