@@ -99,7 +99,7 @@ public class AlunoController extends AbstractRestController{
         aluno.setSextaHora(dto.getSextaHora());
 
         alunoRepository.save(aluno);
-        return ResponseRest.created("Aluno salvo com sucesso!");
+        return ResponseRest.ok("Aluno salvo com sucesso!");
     }
 
     @PutMapping("/{id}")
@@ -113,13 +113,14 @@ public class AlunoController extends AbstractRestController{
         aluno.setNome(dto.getNome());
         aluno.setSobrenome(dto.getSobrenome());
         aluno.setProfissao(dto.getProfissao());
-        aluno.setProfessor(dto.getProfessor());
+        aluno.setObservacao(dto.getObservacao());
         aluno.setDataInicio(dto.getDataInicio());
         aluno.setDataNascimento(dto.getDataNascimento());
         aluno.setPlano(dto.getPlano());
 
         aluno.setDesconto(dto.getDesconto());
         alunoService.adicionarValorPlano(dto);
+        aluno.setProfessor(dto.getProfessor());
         aluno.setValorPlano(dto.getValorPlano());
         aluno.setValorPlanoDesconto(dto.getValorPlanoDesconto());
         aluno.setQtdAulasMensais(dto.getQtdAulasMensais());

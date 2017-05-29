@@ -66,6 +66,8 @@ public class Aluno implements Serializable {
 
     private String telefone;
 
+    private String observacao;
+
     @Column(name = "qtda_aulas_mensais")
     private Integer qtdAulasMensais;
 

@@ -39,4 +39,5 @@ public class AlunoDTO implements Serializable {
     private BigDecimal valorPlanoDesconto;
     private String usuarioCadastro;
     private String usuarioAlteracao;
+    private String observacao;
 }
