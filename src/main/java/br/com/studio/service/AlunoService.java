@@ -28,18 +28,22 @@ public class AlunoService {
             case "Bronze":
                 dto.setValorPlano(new BigDecimal(50.00));
                 dto.setQtdAulasMensais(1);
+                break;
 
             case "Prata":
                 dto.setValorPlano(new BigDecimal(100.00));
                 dto.setQtdAulasMensais(2);
+                break;
 
             case "Ouro":
                 dto.setValorPlano(new BigDecimal(150.00));
                 dto.setQtdAulasMensais(3);
+                break;
 
             case "Especial":
                 dto.setValorPlano(new BigDecimal(200.00));
                 dto.setQtdAulasMensais(4);
+                break;
         }
         adicionarValorPlanoDesconto(dto);
 
