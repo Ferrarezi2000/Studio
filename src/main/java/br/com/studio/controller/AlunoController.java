@@ -63,7 +63,7 @@ public class AlunoController extends AbstractRestController{
     }
 
     @PostMapping("/cadastro")
-    public ResponseEntity<?> cadastrar(@RequestBody AlunoDTO dto, String nome) {
+    public ResponseEntity<?> cadastrar(@RequestBody AlunoDTO dto) {
         Aluno aluno = new Aluno();
 
         aluno.setAtivo(true);
@@ -152,7 +152,7 @@ public class AlunoController extends AbstractRestController{
         return ResponseRest.object(retorno);
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/delete/{id}")
     public ResponseEntity<?> deletar(@PathVariable("id") Aluno aluno) {
         Assert.notNull(aluno, "Aluno não encontrado.");
         alunoRepository.delete(aluno);
