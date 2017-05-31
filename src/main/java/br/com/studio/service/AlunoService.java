@@ -46,24 +46,6 @@ public class AlunoService {
                 break;
         }
         adicionarValorPlanoDesconto(dto);
-
-//        if (dto.getPlano().equals("Bronze")) {
-//            dto.setValorPlano(new BigDecimal(50.00));
-//            dto.setQtdAulasMensais(1);
-//        }
-//        if (dto.getPlano().equals("Prata")) {
-//            dto.setValorPlano(new BigDecimal(100.00));
-//            dto.setQtdAulasMensais(2);
-//        }
-//        if (dto.getPlano().equals("Ouro")) {
-//            dto.setValorPlano(new BigDecimal(150.00));
-//            dto.setQtdAulasMensais(3);
-//        }
-//        if (dto.getPlano().equals("Especial")) {
-//            dto.setValorPlano(new BigDecimal(200.00));
-//            dto.setQtdAulasMensais(4);
-//        }
-//        adicionarValorPlanoDesconto(dto);
     }
 
     public void adicionarValorPlanoDesconto(AlunoDTO dto) {
@@ -73,21 +55,45 @@ public class AlunoService {
     }
 
     public Double valorTotalPlano(List alunos) {
-        Stream<Aluno> streamPessoas = alunos.parallelStream();
-        Double somaIdade = streamPessoas.mapToDouble(p -> p.getValorPlano().doubleValue()).sum();
-        return somaIdade;
+        Stream<Aluno> streamAlunos = alunos.parallelStream();
+        Double somaPlanos = streamAlunos.mapToDouble(p -> p.getValorPlano().doubleValue()).sum();
+        return somaPlanos;
     }
 
     public Double valorTotalPlanoDesconto(List alunos) {
         Stream<Aluno> streamAlunos = alunos.parallelStream();
-        Double somaIdade = streamAlunos.mapToDouble(p -> p.getValorPlanoDesconto().doubleValue()).sum();
-        return somaIdade;
+        Double somaPlanos = streamAlunos.mapToDouble(p -> p.getValorPlanoDesconto().doubleValue()).sum();
+        return somaPlanos;
     }
 
-    public long teste(List alunos) {
+    public long planoBronze(List alunos) {
         Stream<Aluno> streamAlunos = alunos.parallelStream();
-        long testendo = streamAlunos.filter(a -> a.getPlano().equals("Ouro")).map(a -> a.getNome()).count();
-        return testendo;
+        long bronze = streamAlunos.filter(a -> a.getPlano().equals("Bronze")).map(a -> a.getNome()).count();
+        return bronze;
+    }
+
+    public long planoPrata(List alunos) {
+        Stream<Aluno> streamAlunos = alunos.parallelStream();
+        long prata = streamAlunos.filter(a -> a.getPlano().equals("Prata")).map(a -> a.getNome()).count();
+        return prata;
+    }
+
+    public long planoOuro(List alunos) {
+        Stream<Aluno> streamAlunos = alunos.parallelStream();
+        long ouro = streamAlunos.filter(a -> a.getPlano().equals("Ouro")).map(a -> a.getNome()).count();
+        return ouro;
+    }
+
+    public long planoEspecial(List alunos) {
+        Stream<Aluno> streamAlunos = alunos.parallelStream();
+        long especial = streamAlunos.filter(a -> a.getPlano().equals("Especial")).map(a -> a.getNome()).count();
+        return especial;
+    }
+
+    public long segunda(List alunos) {
+        Stream<Aluno> streamAlunos = alunos.parallelStream();
+        long segunda = streamAlunos.filter(a -> a.getPlano().equals(true)).map(a -> a.getNome()).count();
+        return segunda;
     }
 
     public void calculoIdade(Aluno aluno){

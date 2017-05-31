@@ -29,17 +29,8 @@ public class AlunoController extends AbstractRestController{
     @GetMapping("/ativos")
     public ResponseEntity<?> listarAtivos() {
         List<Aluno> alunos = alunoRepository.findAllByAtivo(true);
-        int total = alunos.size();
-
-       Double somaPlanos =  alunoService.valorTotalPlano(alunos);
-       Double somaPlanosDesconto = alunoService.valorTotalPlanoDesconto(alunos);
-       long ouro = alunoService.teste(alunos);
 
         Map retorno = MapBuilder.build()
-                .add("total", total)
-                .add("somaPlanos", somaPlanos)
-                .add("ouro", ouro)
-                .add("somaPlanosDesconto", somaPlanosDesconto)
                 .add("alunos", alunos);
         return ResponseRest.object(retorno);
     }
@@ -48,15 +39,8 @@ public class AlunoController extends AbstractRestController{
     public ResponseEntity<?> listarInativos() {
 
         List<Aluno> alunos = alunoRepository.findAllByAtivo(false);
-        int total = alunos.size();
-
-        Double somaPlanos =  alunoService.valorTotalPlano(alunos);
-        Double somaPlanosDesconto = alunoService.valorTotalPlanoDesconto(alunos);
 
         Map retorno = MapBuilder.build()
-                .add("total", total)
-                .add("somaPlanos", somaPlanos)
-                .add("somaPlanosDesconto", somaPlanosDesconto)
                 .add("alunos", alunos);
 
         return ResponseRest.object(retorno);
