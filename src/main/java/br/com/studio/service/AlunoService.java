@@ -62,32 +62,14 @@ public class AlunoService {
         idade = anoAtual - nascimento;
     }
 
-
-
-
-    public Map dasboard (List alunos) {
-        Stream<Aluno> stream = alunos.parallelStream();
-        Double somaPlanos = stream.mapToDouble(p -> p.getValorPlano().doubleValue()).sum();
-
-        Stream<Aluno> stream1 = alunos.parallelStream();
-        Double somaPlanosDesconto = stream1.mapToDouble(p -> p.getValorPlanoDesconto().doubleValue()).sum();
-
-        Stream<Aluno> stream2 = alunos.parallelStream();
-        Integer bronze = Math.toIntExact(stream2.filter(a -> a.getPlano().equals("Bronze")).map(a -> a.getNome()).count());
-
-        Stream<Aluno> stream3 = alunos.parallelStream();
-        Integer prata = Math.toIntExact(stream3.filter(a -> a.getPlano().equals("Prata")).map(a -> a.getNome()).count());
-
-        Stream<Aluno> stream4 = alunos.parallelStream();
-        Integer ouro = Math.toIntExact(stream4.filter(a -> a.getPlano().equals("Ouro")).map(a -> a.getNome()).count());
-
-        Stream<Aluno> stream5 = alunos.parallelStream();
-        Integer especial = Math.toIntExact(stream5.filter(a -> a.getPlano().equals("Especial")).map(a -> a.getNome()).count());
-
-        Stream<Aluno> stream6 = alunos.parallelStream();
-        Integer segunda = (int) stream6.filter(a -> a.getSegunda() == true).map(a -> a.getNome()).count();
-
-
+    public Map dasboard (List<Aluno> alunos) {
+        Double somaPlanos = alunos.stream().mapToDouble(p -> p.getValorPlano().doubleValue()).sum();
+        Double somaPlanosDesconto = alunos.stream().mapToDouble(p -> p.getValorPlanoDesconto().doubleValue()).sum();
+        Integer bronze = Math.toIntExact(alunos.stream().filter(a -> a.getPlano().equals("Bronze")).map(a -> a.getNome()).count());
+        Integer prata = Math.toIntExact(alunos.stream().filter(a -> a.getPlano().equals("Prata")).map(a -> a.getNome()).count());
+        Integer ouro = Math.toIntExact(alunos.stream().filter(a -> a.getPlano().equals("Ouro")).map(a -> a.getNome()).count());
+        Integer especial = Math.toIntExact(alunos.stream().filter(a -> a.getPlano().equals("Especial")).map(a -> a.getNome()).count());
+        Integer segunda = Math.toIntExact(alunos.stream().filter(a -> a.getSegunda().equals(true)).map(a -> a.getNome()).count());
 
         Map retorno = MapBuilder.build()
                 .add("somaPlanos", somaPlanos)
