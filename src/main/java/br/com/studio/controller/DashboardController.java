@@ -31,27 +31,11 @@ public class DashboardController extends AbstractRestController{
         List<Aluno> alunosAtivos = alunoRepository.findAllByAtivo(true);
         List<Aluno> alunosInativos = alunoRepository.findAllByAtivo(false);
 
-        Double somaPlanos = alunoService.valorTotalPlano(alunosAtivos);
-        Double somaPlanosDesconto = alunoService.valorTotalPlanoDesconto(alunosAtivos);
-
-        Long totalOuro = alunoService.planoOuro(alunosAtivos);
-        Long totalBronze = alunoService.planoBronze(alunosAtivos);
-        Long totalPrata = alunoService.planoPrata(alunosAtivos);
-        Long totalEspecial = alunoService.planoEspecial(alunosAtivos);
-
-        Long totalSegunda = alunoService.segunda(alunosAtivos);
-
+        Map dasboard = alunoService.dasboard(alunosAtivos);
 
         Map retorno = MapBuilder.build()
-                .add("totalOuro", totalOuro)
-                .add("totalPrata", totalPrata)
-                .add("totalBronze", totalBronze)
-                .add("totalEspecial", totalEspecial)
-                .add("somaPlanos", somaPlanos)
-                .add("totalSegunda", totalSegunda)
-                .add("somaPlanosDesconto", somaPlanosDesconto)
-                .add("alunosAtivos", alunosAtivos.size())
-                .add("alunosInativos", alunosInativos.size());
+                .add("alunosInativos", alunosInativos.size())
+                .add("alunos", dasboard);
 
         return ResponseRest.object(retorno);
     }
