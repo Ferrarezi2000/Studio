@@ -26,6 +26,12 @@ public class AlunoController extends AbstractRestController{
     @Autowired
     private AlunoService alunoService;
 
+    @GetMapping
+    public ResponseEntity<?> todos(){
+        List<Aluno> alunos = alunoRepository.findAll();
+        return ResponseRest.list(alunos);
+    }
+
     @GetMapping("/ativos")
     public ResponseEntity<?> listarAtivos() {
         List<Aluno> alunos = alunoRepository.findAllByAtivo(true);
