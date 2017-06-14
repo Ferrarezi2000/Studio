@@ -31,6 +31,7 @@ public class UsuarioController extends AbstractRestController{
         Usuario usuario = new Usuario();
 
         usuario.setNome(dto.getNome());
+        usuario.setSobrenome(dto.getSobrenome());
         usuario.setSenha(dto.getSenha());
         usuarioRepository.save(usuario);
 

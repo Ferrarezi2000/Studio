@@ -13,7 +13,6 @@ import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Stream;
 
 @Service
 public class AlunoService {
@@ -58,13 +57,13 @@ public class AlunoService {
 
     public void calculoIdade(Aluno aluno){
         int anoAtual = new Date().getYear();
-        int nascimento = aluno.getDataNascimento().getYear();
+        int nascimento = aluno.getData_nascimento().getYear();
         idade = anoAtual - nascimento;
     }
 
     public Map dasboard (List<Aluno> alunos) {
         Double somaPlanos = alunos.stream().mapToDouble(p -> p.getValorPlano().doubleValue()).sum();
-        Double somaPlanosDesconto = alunos.stream().mapToDouble(p -> p.getValorPlanoDesconto().doubleValue()).sum();
+        Double somaPlanosDesconto = alunos.stream().mapToDouble(p -> p.getValorPlanoTotal().doubleValue()).sum();
         Integer bronze = Math.toIntExact(alunos.stream().filter(a -> a.getPlano().equals("Bronze")).map(a -> a.getNome()).count());
         Integer prata = Math.toIntExact(alunos.stream().filter(a -> a.getPlano().equals("Prata")).map(a -> a.getNome()).count());
         Integer ouro = Math.toIntExact(alunos.stream().filter(a -> a.getPlano().equals("Ouro")).map(a -> a.getNome()).count());

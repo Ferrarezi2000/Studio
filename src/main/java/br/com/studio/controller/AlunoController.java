@@ -64,17 +64,17 @@ public class AlunoController extends AbstractRestController{
         aluno.setSobrenome(dto.getSobrenome());
         aluno.setProfissao(dto.getProfissao());
         aluno.setTelefone(dto.getTelefone());
-        aluno.setDataNascimento(dto.getDataNascimento());
+        aluno.setData_nascimento(dto.getDataNascimento());
 
         aluno.setPlano(dto.getPlano());
         aluno.setProfessor(dto.getProfessor());
-        aluno.setDataInicio(dto.getDataInicio());
+        aluno.setData_inicio_aulas(dto.getDataInicio());
 
         aluno.setDesconto(dto.getDesconto());
         alunoService.adicionarValorPlano(dto);
         aluno.setValorPlano(dto.getValorPlano());
-        aluno.setValorPlanoDesconto(dto.getValorPlanoDesconto());
-        aluno.setQtdAulasMensais(dto.getQtdAulasMensais());
+        aluno.setValorPlanoTotal(dto.getValorPlanoDesconto());
+        aluno.setQtdAulasSemanais(dto.getQtdAulasMensais());
 
         aluno.setSegunda(dto.getSegunda());
         aluno.setTerca(dto.getTerca());
@@ -82,11 +82,11 @@ public class AlunoController extends AbstractRestController{
         aluno.setQuinta(dto.getQuinta());
         aluno.setSexta(dto.getSexta());
 
-        aluno.setSegundaHora(dto.getSegundaHora());
-        aluno.setTercaHora(dto.getTercaHora());
-        aluno.setQuartaHora(dto.getQuartaHora());
-        aluno.setQuintaHora(dto.getQuintaHora());
-        aluno.setSextaHora(dto.getSextaHora());
+        aluno.setSegunda_hora(dto.getSegundaHora());
+        aluno.setTerca_hora(dto.getTercaHora());
+        aluno.setQuarta_hora(dto.getQuartaHora());
+        aluno.setQuinta_hora(dto.getQuintaHora());
+        aluno.setSexta_hora(dto.getSextaHora());
 
         alunoRepository.save(aluno);
         return ResponseRest.ok("Aluno salvo com sucesso!");
@@ -104,16 +104,16 @@ public class AlunoController extends AbstractRestController{
         aluno.setSobrenome(dto.getSobrenome());
         aluno.setProfissao(dto.getProfissao());
         aluno.setObservacao(dto.getObservacao());
-        aluno.setDataInicio(dto.getDataInicio());
-        aluno.setDataNascimento(dto.getDataNascimento());
+        aluno.setData_inicio_aulas(dto.getDataInicio());
+        aluno.setData_nascimento(dto.getDataNascimento());
         aluno.setPlano(dto.getPlano());
 
         aluno.setDesconto(dto.getDesconto());
         alunoService.adicionarValorPlano(dto);
         aluno.setProfessor(dto.getProfessor());
         aluno.setValorPlano(dto.getValorPlano());
-        aluno.setValorPlanoDesconto(dto.getValorPlanoDesconto());
-        aluno.setQtdAulasMensais(dto.getQtdAulasMensais());
+        aluno.setValorPlanoTotal(dto.getValorPlanoDesconto());
+        aluno.setQtdAulasSemanais(dto.getQtdAulasMensais());
 
         aluno.setSegunda(dto.getSegunda());
         aluno.setTerca(dto.getTerca());
@@ -121,11 +121,11 @@ public class AlunoController extends AbstractRestController{
         aluno.setQuinta(dto.getQuinta());
         aluno.setSexta(dto.getSexta());
 
-        aluno.setSegundaHora(dto.getSegundaHora());
-        aluno.setTercaHora(dto.getTercaHora());
-        aluno.setQuartaHora(dto.getQuartaHora());
-        aluno.setQuintaHora(dto.getQuintaHora());
-        aluno.setSextaHora(dto.getSextaHora());
+        aluno.setSegunda_hora(dto.getSegundaHora());
+        aluno.setTerca_hora(dto.getTercaHora());
+        aluno.setQuarta_hora(dto.getQuartaHora());
+        aluno.setQuinta_hora(dto.getQuintaHora());
+        aluno.setSexta_hora(dto.getSextaHora());
 
         alunoRepository.save(aluno);
         return ResponseRest.ok("Aluno atualizado com sucesso!");

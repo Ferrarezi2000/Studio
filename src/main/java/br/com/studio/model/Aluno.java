@@ -28,28 +28,21 @@ public class Aluno implements Serializable {
     @NotEmpty
     private String profissao;
 
-    @Column(name = "data_nascimento")
     @Temporal(TemporalType.DATE)
-    private Date dataNascimento;
+    private Date data_nascimento;
 
-    @Column(name = "data_inicio_aula")
     @Temporal(TemporalType.DATE)
-    private Date dataInicio;
+    private Date data_inicio_aulas;
 
-    @Column(name = "segunda_hora")
-    private String segundaHora;
+    private String segunda_hora;
 
-    @Column(name = "terca_hora")
-    private String tercaHora;
+    private String terca_hora;
 
-    @Column(name = "quarta_hora")
-    private String quartaHora;
+    private String quarta_hora;
 
-    @Column(name = "quinta_hora")
-    private String quintaHora;
+    private String quinta_hora;
 
-    @Column(name = "sexta_hora")
-    private String sextaHora;
+    private String sexta_hora;
 
     private Boolean segunda;
 
@@ -67,8 +60,8 @@ public class Aluno implements Serializable {
 
     private String observacao;
 
-    @Column(name = "qtda_aulas_mensais")
-    private Integer qtdAulasMensais;
+    @Column(name = "qtda_aulas_semanais")
+    private Integer qtdAulasSemanais;
 
     private String plano;
 
@@ -79,8 +72,8 @@ public class Aluno implements Serializable {
     @Column(name = "valor_plano")
     private BigDecimal valorPlano;
 
-    @Column(name = "valor_plano_desconto")
-    private BigDecimal valorPlanoDesconto;
+    @Column(name = "valor_plano_total")
+    private BigDecimal valorPlanoTotal;
 
     @Column(name = "usuario_cadastro")
     private String usuarioCadastro;
