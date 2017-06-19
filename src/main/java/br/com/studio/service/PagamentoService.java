@@ -25,7 +25,6 @@ public class PagamentoService {
 
     private Date hoje = new Date();
     private LocalDate ano = LocalDate.now();
-//    private Calendar ano = GregorianCalendar.getInstance();
 
     public void pagamento(PagamentoDTO dto) {
         if (dto.getAvulso().equals(true)) {
