@@ -49,7 +49,7 @@ public class AlunoController extends AbstractRestController{
     public ResponseEntity<?> cadastrar(@RequestBody AlunoDTO dto) {
         Assert.notNull(dto, "Erro");
         alunoService.cadastro(dto);
-        return ResponseRest.ok("Aluno salvo com sucesso!");
+        return ResponseRest.created("Aluno salvo com sucesso!");
     }
 
     @PutMapping("/{id}")

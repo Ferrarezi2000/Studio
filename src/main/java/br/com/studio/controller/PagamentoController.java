@@ -33,15 +33,15 @@ public class PagamentoController extends AbstractRestController {
 
     @GetMapping("/mes/{mes}")
     public ResponseEntity<?> pagamentoPorMes(@PathVariable("mes") String mes) {
-        Assert.notNull(mes, "Favor informar o Mês desejado");
         List<Pagamento> pagamentos = pagamentoRepository.findAllByMes(mes);
+        Assert.notEmpty(pagamentos, "Ainda não foram contabilizado pagamentos para o mês informado");
         return ResponseRest.object(pagamentos);
     }
 
     @PostMapping
     public ResponseEntity<?> pagar(@RequestBody PagamentoDTO dto) {
         pagamentoService.pagamento(dto);
-        return ResponseRest.ok("Pagamento realizado com sucesso!");
+        return ResponseRest.created("Pagamento realizado com sucesso!");
     }
 
 }
