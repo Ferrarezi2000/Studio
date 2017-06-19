@@ -23,6 +23,79 @@ public class AlunoService {
     @Getter @Setter
     public int idade;
 
+    public void cadastro(AlunoDTO dto) {
+        Aluno aluno = new Aluno();
+
+        aluno.setAtivo(true);
+
+        aluno.setUsuarioCadastro(dto.getUsuarioCadastro());
+
+        aluno.setNome(dto.getNome());
+        aluno.setSobrenome(dto.getSobrenome());
+        aluno.setProfissao(dto.getProfissao());
+        aluno.setTelefone(dto.getTelefone());
+        aluno.setData_nascimento(dto.getDataNascimento());
+
+        aluno.setPlano(dto.getPlano());
+        aluno.setProfessor(dto.getProfessor());
+        aluno.setData_inicio_aulas(dto.getDataInicio());
+
+        aluno.setDesconto(dto.getDesconto());
+        adicionarValorPlano(dto);
+        aluno.setValorPlano(dto.getValorPlano());
+        aluno.setValorPlanoTotal(dto.getValorPlanoDesconto());
+        aluno.setQtdAulasSemanais(dto.getQtdAulasMensais());
+
+        aluno.setSegunda(dto.getSegunda());
+        aluno.setTerca(dto.getTerca());
+        aluno.setQuarta(dto.getQuarta());
+        aluno.setQuinta(dto.getQuinta());
+        aluno.setSexta(dto.getSexta());
+
+        aluno.setSegunda_hora(dto.getSegundaHora());
+        aluno.setTerca_hora(dto.getTercaHora());
+        aluno.setQuarta_hora(dto.getQuartaHora());
+        aluno.setQuinta_hora(dto.getQuintaHora());
+        aluno.setSexta_hora(dto.getSextaHora());
+
+        alunoRepository.save(aluno);
+    }
+
+    public void alterarCadastro (Aluno aluno, AlunoDTO dto) {
+        aluno.setAtivo(dto.getAtivo());
+
+        aluno.setUsuarioAlteracao(dto.getUsuarioAlteracao());
+
+        aluno.setNome(dto.getNome());
+        aluno.setSobrenome(dto.getSobrenome());
+        aluno.setProfissao(dto.getProfissao());
+        aluno.setObservacao(dto.getObservacao());
+        aluno.setData_inicio_aulas(dto.getDataInicio());
+        aluno.setData_nascimento(dto.getDataNascimento());
+        aluno.setPlano(dto.getPlano());
+
+        aluno.setDesconto(dto.getDesconto());
+        adicionarValorPlano(dto);
+        aluno.setProfessor(dto.getProfessor());
+        aluno.setValorPlano(dto.getValorPlano());
+        aluno.setValorPlanoTotal(dto.getValorPlanoDesconto());
+        aluno.setQtdAulasSemanais(dto.getQtdAulasMensais());
+
+        aluno.setSegunda(dto.getSegunda());
+        aluno.setTerca(dto.getTerca());
+        aluno.setQuarta(dto.getQuarta());
+        aluno.setQuinta(dto.getQuinta());
+        aluno.setSexta(dto.getSexta());
+
+        aluno.setSegunda_hora(dto.getSegundaHora());
+        aluno.setTerca_hora(dto.getTercaHora());
+        aluno.setQuarta_hora(dto.getQuartaHora());
+        aluno.setQuinta_hora(dto.getQuintaHora());
+        aluno.setSexta_hora(dto.getSextaHora());
+
+        alunoRepository.save(aluno);
+    }
+
     public void adicionarValorPlano(AlunoDTO dto) {
 
         switch (dto.getPlano()){
