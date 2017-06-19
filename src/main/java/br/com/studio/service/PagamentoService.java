@@ -25,6 +25,8 @@ public class PagamentoService {
     private LocalDate ano = LocalDate.now();
 
     public void pagamento(PagamentoDTO dto) {
+//        Pagamento pagamentoRealizado = pagamentoRepository.findTopByAlunoIdAndMesAndAno(dto.getAlunoId(), dto.getMes(), ano.getYear());
+//        Assert.isNull(pagamentoRealizado, "Ops... Essa aluno já pagou o mês selecionado" );
         if (dto.getAvulso().equals(true)) {
             Pagamento pagamento = new Pagamento();
             pagamento.setAvulso(true);

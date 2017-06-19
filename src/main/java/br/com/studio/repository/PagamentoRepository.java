@@ -12,4 +12,5 @@ public interface PagamentoRepository extends JpaRepository<Pagamento, Long> {
 
     List<Pagamento> findAllByOrderByDataPagamento();
 
+    Pagamento findTopByAlunoIdAndMesAndAno (Long id, String mes, Integer ano);
 }

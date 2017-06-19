@@ -3,11 +3,8 @@ package br.com.studio.dto;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.Column;
 import javax.persistence.Table;
 import java.io.Serializable;
-import java.math.BigDecimal;
-import java.util.Date;
 
 @Getter
 @Setter
