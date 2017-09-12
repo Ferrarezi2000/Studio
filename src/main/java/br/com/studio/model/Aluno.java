@@ -25,24 +25,23 @@ public class Aluno implements Serializable {
     @NotEmpty
     private String sobrenome;
 
-    @NotEmpty
     private String profissao;
 
     @Temporal(TemporalType.DATE)
-    private Date data_nascimento;
+    private Date dataNascimento;
 
     @Temporal(TemporalType.DATE)
-    private Date data_inicio_aulas;
+    private Date dataInicioAulas;
 
-    private String segunda_hora;
+    private String segundaHora;
 
-    private String terca_hora;
+    private String tercaHora;
 
-    private String quarta_hora;
+    private String quartaHora;
 
-    private String quinta_hora;
+    private String quintaHora;
 
-    private String sexta_hora;
+    private String sextaHora;
 
     private Boolean segunda;
 

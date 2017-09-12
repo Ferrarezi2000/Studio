@@ -4,6 +4,8 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
@@ -17,8 +19,10 @@ public class AlunoDTO implements Serializable {
     private String nome;
     private String sobrenome;
     private String profissao;
+    @Temporal(TemporalType.DATE)
     private Date dataNascimento;
-    private Date dataInicio;
+    @Temporal(TemporalType.DATE)
+    private Date dataInicioAulas;
     private String segundaHora;
     private String tercaHora;
     private String quartaHora;
@@ -31,7 +35,7 @@ public class AlunoDTO implements Serializable {
     private Boolean sexta;
     private Boolean ativo;
     private String telefone;
-    private Integer qtdAulasMensais;
+    private Integer qtdAulasSemanais;
     private String plano;
     private String professor;
     private BigDecimal desconto;

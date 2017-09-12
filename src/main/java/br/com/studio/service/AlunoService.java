@@ -34,17 +34,18 @@ public class AlunoService {
         aluno.setSobrenome(dto.getSobrenome());
         aluno.setProfissao(dto.getProfissao());
         aluno.setTelefone(dto.getTelefone());
-        aluno.setData_nascimento(dto.getDataNascimento());
+        aluno.setDataNascimento(dto.getDataNascimento());
+        aluno.setObservacao(dto.getObservacao());
 
         aluno.setPlano(dto.getPlano());
         aluno.setProfessor(dto.getProfessor());
-        aluno.setData_inicio_aulas(dto.getDataInicio());
+        aluno.setDataInicioAulas(dto.getDataInicioAulas());
 
         aluno.setDesconto(dto.getDesconto());
         adicionarValorPlano(dto);
         aluno.setValorPlano(dto.getValorPlano());
         aluno.setValorPlanoTotal(dto.getValorPlanoDesconto());
-        aluno.setQtdAulasSemanais(dto.getQtdAulasMensais());
+        aluno.setQtdAulasSemanais(dto.getQtdAulasSemanais());
 
         aluno.setSegunda(dto.getSegunda());
         aluno.setTerca(dto.getTerca());
@@ -52,11 +53,11 @@ public class AlunoService {
         aluno.setQuinta(dto.getQuinta());
         aluno.setSexta(dto.getSexta());
 
-        aluno.setSegunda_hora(dto.getSegundaHora());
-        aluno.setTerca_hora(dto.getTercaHora());
-        aluno.setQuarta_hora(dto.getQuartaHora());
-        aluno.setQuinta_hora(dto.getQuintaHora());
-        aluno.setSexta_hora(dto.getSextaHora());
+        aluno.setSegundaHora(dto.getSegundaHora());
+        aluno.setTercaHora(dto.getTercaHora());
+        aluno.setQuartaHora(dto.getQuartaHora());
+        aluno.setQuintaHora(dto.getQuintaHora());
+        aluno.setSextaHora(dto.getSextaHora());
 
         alunoRepository.save(aluno);
     }
@@ -70,8 +71,8 @@ public class AlunoService {
         aluno.setSobrenome(dto.getSobrenome());
         aluno.setProfissao(dto.getProfissao());
         aluno.setObservacao(dto.getObservacao());
-        aluno.setData_inicio_aulas(dto.getDataInicio());
-        aluno.setData_nascimento(dto.getDataNascimento());
+        aluno.setDataInicioAulas(dto.getDataInicioAulas());
+        aluno.setDataNascimento(dto.getDataNascimento());
         aluno.setPlano(dto.getPlano());
 
         aluno.setDesconto(dto.getDesconto());
@@ -79,7 +80,7 @@ public class AlunoService {
         aluno.setProfessor(dto.getProfessor());
         aluno.setValorPlano(dto.getValorPlano());
         aluno.setValorPlanoTotal(dto.getValorPlanoDesconto());
-        aluno.setQtdAulasSemanais(dto.getQtdAulasMensais());
+        aluno.setQtdAulasSemanais(dto.getQtdAulasSemanais());
 
         aluno.setSegunda(dto.getSegunda());
         aluno.setTerca(dto.getTerca());
@@ -87,11 +88,11 @@ public class AlunoService {
         aluno.setQuinta(dto.getQuinta());
         aluno.setSexta(dto.getSexta());
 
-        aluno.setSegunda_hora(dto.getSegundaHora());
-        aluno.setTerca_hora(dto.getTercaHora());
-        aluno.setQuarta_hora(dto.getQuartaHora());
-        aluno.setQuinta_hora(dto.getQuintaHora());
-        aluno.setSexta_hora(dto.getSextaHora());
+        aluno.setSegundaHora(dto.getSegundaHora());
+        aluno.setTercaHora(dto.getTercaHora());
+        aluno.setQuartaHora(dto.getQuartaHora());
+        aluno.setQuintaHora(dto.getQuintaHora());
+        aluno.setSextaHora(dto.getSextaHora());
 
         alunoRepository.save(aluno);
     }
@@ -101,22 +102,22 @@ public class AlunoService {
         switch (dto.getPlano()){
             case "Bronze":
                 dto.setValorPlano(new BigDecimal(50.00));
-                dto.setQtdAulasMensais(1);
+                dto.setQtdAulasSemanais(1);
                 break;
 
             case "Prata":
                 dto.setValorPlano(new BigDecimal(100.00));
-                dto.setQtdAulasMensais(2);
+                dto.setQtdAulasSemanais(2);
                 break;
 
             case "Ouro":
                 dto.setValorPlano(new BigDecimal(150.00));
-                dto.setQtdAulasMensais(3);
+                dto.setQtdAulasSemanais(3);
                 break;
 
             case "Especial":
                 dto.setValorPlano(new BigDecimal(200.00));
-                dto.setQtdAulasMensais(4);
+                dto.setQtdAulasSemanais(4);
                 break;
         }
         adicionarValorPlanoDesconto(dto);
@@ -130,7 +131,7 @@ public class AlunoService {
 
     public void calculoIdade(Aluno aluno){
         int anoAtual = new Date().getYear();
-        int nascimento = aluno.getData_nascimento().getYear();
+        int nascimento = aluno.getDataNascimento().getYear();
         idade = anoAtual - nascimento;
     }
 
