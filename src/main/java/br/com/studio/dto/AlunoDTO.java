@@ -36,9 +36,9 @@ public class AlunoDTO implements Serializable {
     private Boolean ativo;
     private String telefone;
     private Integer qtdAulasSemanais;
-    private String plano;
-    private String professor;
-    private BigDecimal desconto;
+    private Long plano;
+    private Long professor;
+    private Long desconto;
     private BigDecimal valorPlano;
     private BigDecimal valorPlanoDesconto;
     private String usuarioCadastro;

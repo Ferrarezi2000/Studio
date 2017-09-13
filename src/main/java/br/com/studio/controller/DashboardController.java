@@ -35,6 +35,7 @@ public class DashboardController extends AbstractRestController{
 
         Map retorno = MapBuilder.build()
                 .add("alunosInativos", alunosInativos.size())
+                .add("alunosAtivos", alunosAtivos.size())
                 .add("alunos", dasboard);
 
         return ResponseRest.object(retorno);

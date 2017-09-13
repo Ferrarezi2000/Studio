@@ -1,10 +1,12 @@
 package br.com.studio.model;
 
+import br.com.studio.Annotation.Booleano;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
@@ -26,6 +28,22 @@ public class Aluno implements Serializable {
     private String sobrenome;
 
     private String profissao;
+
+    @ManyToOne
+    @JoinColumn(name = "id_professor")
+    private Professor professor;
+
+    @ManyToOne
+    @JoinColumn(name = "id_plano")
+    private Plano plano;
+
+    @ManyToOne
+    @JoinColumn(name = "id_desconto")
+    private Desconto desconto;
+
+    @NotNull
+    @JoinColumn(name = "valor_pagar_mes")
+    private BigDecimal valorPagarMes;
 
     @Temporal(TemporalType.DATE)
     private Date dataNascimento;
@@ -51,6 +69,7 @@ public class Aluno implements Serializable {
 
     private Boolean quinta;
 
+    @Booleano(valorPadrao = false)
     private Boolean sexta;
 
     private Boolean ativo;
@@ -58,26 +77,5 @@ public class Aluno implements Serializable {
     private String telefone;
 
     private String observacao;
-
-    @Column(name = "qtda_aulas_semanais")
-    private Integer qtdAulasSemanais;
-
-    private String plano;
-
-    private String professor;
-
-    private BigDecimal desconto;
-
-    @Column(name = "valor_plano")
-    private BigDecimal valorPlano;
-
-    @Column(name = "valor_plano_total")
-    private BigDecimal valorPlanoTotal;
-
-    @Column(name = "usuario_cadastro")
-    private String usuarioCadastro;
-
-    @Column(name = "usuario_alteracao")
-    private String usuarioAlteracao;
 
 }

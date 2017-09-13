@@ -20,11 +20,9 @@ import java.util.Map;
 public class AlunoController extends AbstractRestController{
 
 
-    @Autowired
-    private AlunoRepository alunoRepository;
+    @Autowired private AlunoRepository alunoRepository;
 
-    @Autowired
-    private AlunoService alunoService;
+    @Autowired private AlunoService alunoService;
 
     @GetMapping
     public ResponseEntity<?> todos(){
