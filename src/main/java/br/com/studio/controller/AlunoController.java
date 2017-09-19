@@ -1,10 +1,10 @@
 package br.com.studio.controller;
 
 import br.com.studio.dto.AlunoDTO;
-import br.com.studio.model.Aluno;
-import br.com.studio.model.MapBuilder;
-import br.com.studio.model.ResponseRest;
+import br.com.studio.model.*;
 import br.com.studio.repository.AlunoRepository;
+import br.com.studio.repository.PlanoRepository;
+import br.com.studio.repository.ProfessorRepository;
 import br.com.studio.service.AlunoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -21,8 +21,9 @@ public class AlunoController extends AbstractRestController{
 
 
     @Autowired private AlunoRepository alunoRepository;
-
+    @Autowired private ProfessorRepository professorRepository;
     @Autowired private AlunoService alunoService;
+    @Autowired private PlanoRepository planoRepository;
 
     @GetMapping
     public ResponseEntity<?> todos(){
@@ -73,6 +74,20 @@ public class AlunoController extends AbstractRestController{
         Assert.notNull(aluno, "Aluno não encontrado.");
         alunoRepository.delete(aluno);
         return ResponseRest.ok("Aluno excluído!");
+    }
+
+    @GetMapping("/find_by_professor/{id}")
+    public ResponseEntity<?> pesquisarPorProfessor(@PathVariable("id") Long id) {
+        Professor professor = professorRepository.findOne(id);
+        Assert.notNull(professor, "Professora não encontrada.");
+        return ResponseRest.list(alunoRepository.findAllByProfessor(professor));
+    }
+
+    @GetMapping("/find_by_plano/{id}")
+    public ResponseEntity<?> pesquisarPorPlano(@PathVariable("id") Long id) {
+        Plano plano = planoRepository.findOne(id);
+        Assert.notNull(plano, "Plano não encontrado.");
+        return ResponseRest.list(alunoRepository.findAllByPlano(plano));
     }
 
 }

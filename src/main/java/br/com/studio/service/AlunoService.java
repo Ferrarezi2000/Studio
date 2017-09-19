@@ -127,6 +127,10 @@ public class AlunoService {
 //        Integer ouro = Math.toIntExact(alunos.stream().filter(a -> a.getPlano().equals("Ouro")).map(a -> a.getNome()).count());
 //        Integer especial = Math.toIntExact(alunos.stream().filter(a -> a.getPlano().equals("Especial")).map(a -> a.getNome()).count());
         Integer segunda = Math.toIntExact(alunos.stream().filter(a -> a.getSegunda().equals(true)).map(a -> a.getNome()).count());
+        Integer terca = Math.toIntExact(alunos.stream().filter(a -> a.getTerca().equals(true)).map(a -> a.getNome()).count());
+        Integer quarta = Math.toIntExact(alunos.stream().filter(a -> a.getQuarta().equals(true)).map(a -> a.getNome()).count());
+        Integer quinta = Math.toIntExact(alunos.stream().filter(a -> a.getQuinta().equals(true)).map(a -> a.getNome()).count());
+        Integer sexta = Math.toIntExact(alunos.stream().filter(a -> a.getSexta().equals(true)).map(a -> a.getNome()).count());
 
         Map retorno = MapBuilder.build()
                 .add("somaPlanos", somaPlanos)
@@ -134,7 +138,11 @@ public class AlunoService {
 //                .add("prata", prata)
 //                .add("ouro", ouro)
 //                .add("especial", especial)
-                .add("segunda", segunda);
+                .add("segunda", segunda)
+                .add("terca", terca)
+                .add("quarta", quarta)
+                .add("quinta", quinta)
+                .add("sexta", sexta);
 
         return retorno;
     }

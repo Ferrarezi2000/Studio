@@ -31,7 +31,6 @@ public class PagamentoService {
             pagamento.setMes(dto.getMes());
             pagamento.setAno(ano.getYear());
             pagamento.setValorPago(dto.getValorPago());
-            pagamento.setNomeAvulso(dto.getNomeAvulso());
             pagamento.setDataPagamento(hoje);
             pagamentoRepository.save(pagamento);
         } else {

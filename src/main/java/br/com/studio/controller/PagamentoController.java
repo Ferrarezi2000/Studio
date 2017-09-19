@@ -18,11 +18,8 @@ import java.util.List;
 @RequestMapping("/pagamento")
 public class PagamentoController extends AbstractRestController {
 
-    @Autowired
-    private PagamentoRepository pagamentoRepository;
-
-    @Autowired
-    private PagamentoService pagamentoService;
+    @Autowired private PagamentoRepository pagamentoRepository;
+    @Autowired private PagamentoService pagamentoService;
 
     private LocalDate ano = LocalDate.now();
 

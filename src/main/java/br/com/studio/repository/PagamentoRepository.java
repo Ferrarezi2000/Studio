@@ -9,8 +9,6 @@ import java.util.List;
 public interface PagamentoRepository extends JpaRepository<Pagamento, Long> {
 
     List<Pagamento> findAllByMes (String mes);
-
     List<Pagamento> findAllByOrderByDataPagamento();
-
     Pagamento findTopByAlunoIdAndMesAndAno (Long id, String mes, Integer ano);
 }

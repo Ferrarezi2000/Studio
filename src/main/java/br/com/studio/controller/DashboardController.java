@@ -20,11 +20,8 @@ import java.util.Map;
 @RequestMapping("/dashboard")
 public class DashboardController extends AbstractRestController{
 
-    @Autowired
-    private AlunoRepository alunoRepository;
-
-    @Autowired
-    private AlunoService alunoService;
+    @Autowired private AlunoRepository alunoRepository;
+    @Autowired private AlunoService alunoService;
 
     @GetMapping
     public ResponseEntity<?> listarAlunos() {
@@ -36,7 +33,7 @@ public class DashboardController extends AbstractRestController{
         Map retorno = MapBuilder.build()
                 .add("alunosInativos", alunosInativos.size())
                 .add("alunosAtivos", alunosAtivos.size())
-                .add("alunos", dasboard);
+                .add("alunosInfo", dasboard);
 
         return ResponseRest.object(retorno);
     }

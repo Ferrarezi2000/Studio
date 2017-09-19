@@ -2,7 +2,6 @@ package br.com.studio.model;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -27,7 +26,7 @@ public class Pagamento implements Serializable {
     @JoinColumn(name = "id_aluno")
     private Aluno aluno;
 
-    @NotEmpty
+    @NotNull
     private String mes;
 
     private Integer ano;
@@ -36,6 +35,4 @@ public class Pagamento implements Serializable {
     private Date dataPagamento;
 
     private Boolean avulso;
-
-    private String nomeAvulso;
 }

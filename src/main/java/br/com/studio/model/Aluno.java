@@ -1,6 +1,5 @@
 package br.com.studio.model;
 
-import br.com.studio.Annotation.Booleano;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.validator.constraints.NotEmpty;
@@ -69,7 +68,6 @@ public class Aluno implements Serializable {
 
     private Boolean quinta;
 
-    @Booleano(valorPadrao = false)
     private Boolean sexta;
 
     private Boolean ativo;
