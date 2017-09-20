@@ -120,6 +120,16 @@ public class AlunoService {
         idade = anoAtual - nascimento;
     }
 
+    public Map valorTotalAtivos (List<Aluno> alunos) {
+        Double soma = alunos.stream().mapToDouble(a -> a.getValorPagarMes().doubleValue()).sum();
+
+        Map retorno = MapBuilder.build()
+                .add("lista", alunos)
+                .add("soma", soma);
+
+        return retorno;
+    }
+
     public Map dasboard (List<Aluno> alunos) {
         Double somaPlanos = alunos.stream().mapToDouble(a -> a.getValorPagarMes().doubleValue()).sum();
 //        Integer bronze = Math.toIntExact(alunos.stream().filter(a -> a.getPlano().equals("Bronze")).map(a -> a.getNome()).count());

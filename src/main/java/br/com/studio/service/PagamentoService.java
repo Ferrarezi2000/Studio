@@ -2,6 +2,7 @@ package br.com.studio.service;
 
 import br.com.studio.dto.PagamentoDTO;
 import br.com.studio.model.Aluno;
+import br.com.studio.model.MapBuilder;
 import br.com.studio.model.Pagamento;
 import br.com.studio.repository.AlunoRepository;
 import br.com.studio.repository.PagamentoRepository;
@@ -11,6 +12,8 @@ import org.springframework.util.Assert;
 
 import java.time.LocalDate;
 import java.util.Date;
+import java.util.List;
+import java.util.Map;
 
 @Service
 public class PagamentoService {
@@ -45,5 +48,14 @@ public class PagamentoService {
             pagamento.setDataPagamento(hoje);
             pagamentoRepository.save(pagamento);
         }
+    }
+
+    public Map valorTotalMes(List<Pagamento> pagamentos) {
+        Double total = pagamentos.stream().mapToDouble(p -> p.getValorPago().doubleValue()).sum();
+        Map retorno = MapBuilder.build()
+                .add("lista", pagamentos)
+                .add("total", total);
+
+        return retorno;
     }
 }

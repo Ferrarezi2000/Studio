@@ -34,12 +34,12 @@ public class AlunoController extends AbstractRestController{
     @GetMapping("/ativos")
     public ResponseEntity<?> listarAtivos() {
         List<Aluno> alunos = alunoRepository.findAllByAtivo(true);
-        return ResponseRest.list(alunos);
+        Map retorno = alunoService.valorTotalAtivos(alunos);
+        return ResponseRest.object(retorno);
     }
 
     @GetMapping("/inativos")
     public ResponseEntity<?> listarInativos() {
-
         List<Aluno> alunos = alunoRepository.findAllByAtivo(false);
         return ResponseRest.list(alunos);
     }
