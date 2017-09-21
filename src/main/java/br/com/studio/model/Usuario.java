@@ -24,4 +24,7 @@ public class Usuario {
 
     @NotEmpty
     private Integer senha;
+
+    @NotEmpty
+    private String email;
 }

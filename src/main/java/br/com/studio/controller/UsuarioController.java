@@ -15,30 +15,23 @@ import org.springframework.web.bind.annotation.*;
 public class UsuarioController extends AbstractRestController{
 
 
-    @Autowired
-    private UsuarioRepository usuarioRepository;
+    @Autowired private UsuarioRepository usuarioRepository;
 
 
     @GetMapping
     public ResponseEntity<?> listar() {
-
         return ResponseRest.object(usuarioRepository.findAll());
     }
-
 
     @PostMapping
     public ResponseEntity<?> save(@RequestBody UsuarioDTO dto) {
         Usuario usuario = new Usuario();
-
         usuario.setNome(dto.getNome());
         usuario.setSobrenome(dto.getSobrenome());
         usuario.setSenha(dto.getSenha());
         usuarioRepository.save(usuario);
-
-
         return ResponseRest.ok("Usuário salvo com sucesso!");
     }
-
 
     @GetMapping("/{id}")
     public ResponseEntity<?> buscar(@PathVariable("id") Usuario usuario) {
@@ -46,9 +39,15 @@ public class UsuarioController extends AbstractRestController{
         return ResponseRest.object(usuario);
     }
 
+    @PutMapping("/email")
+    public ResponseEntity<?> buscarEmail(@RequestBody UsuarioDTO dto) {
+        Usuario usuario = usuarioRepository.findTopByEmail(dto.getEmail());
+        Assert.notNull(usuario, "Email não cadastrado!");
+        return ResponseRest.object(usuario);
+    }
+
     @GetMapping("/info/{senha}")
     public ResponseEntity<?> buscarSenha(@PathVariable("senha") Integer senha) {
-
         Assert.notNull(senha, "A Senha não poder ser vazia");
         Usuario usuario = usuarioRepository.findOneBySenha(senha);
         Assert.notNull(usuario, "Senha incorreta.");
