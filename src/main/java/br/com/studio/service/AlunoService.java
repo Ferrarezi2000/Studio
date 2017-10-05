@@ -103,6 +103,16 @@ public class AlunoService {
         alunoRepository.save(aluno);
     }
 
+    public void inativar (Aluno aluno) {
+        aluno.setAtivo(false);
+        alunoRepository.save(aluno);
+    }
+
+    public void ativar (Aluno aluno) {
+        aluno.setAtivo(true);
+        alunoRepository.save(aluno);
+    }
+
     private void valorPagarMes(Aluno aluno, AlunoDTO dto) {
         Plano plano = planoRepository.findOne(dto.getPlano());
         Desconto desconto = descontoRepository.findOne(dto.getDesconto());

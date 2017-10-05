@@ -6,6 +6,7 @@ import br.com.studio.repository.AlunoRepository;
 import br.com.studio.repository.PlanoRepository;
 import br.com.studio.repository.ProfessorRepository;
 import br.com.studio.service.AlunoService;
+import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.Assert;
@@ -17,6 +18,7 @@ import java.util.Map;
 @RestController
 @CrossOrigin
 @RequestMapping("/aluno")
+@Api(description = "Aluno")
 public class AlunoController extends AbstractRestController{
 
 
@@ -56,6 +58,20 @@ public class AlunoController extends AbstractRestController{
         Assert.notNull(aluno, "Aluno inexistente.");
         alunoService.alterarCadastro(aluno, dto);
         return ResponseRest.ok("Aluno atualizado com sucesso!");
+    }
+
+    @PutMapping("/inativar/{id}")
+    public ResponseEntity<?> inativar(@PathVariable("id") Aluno aluno) {
+        Assert.notNull(aluno, "Aluno inexistente.");
+        alunoService.inativar(aluno);
+        return ResponseRest.ok("Aluno inativado com sucesso!");
+    }
+
+    @PutMapping("/ativar/{id}")
+    public ResponseEntity<?> ATIVAR(@PathVariable("id") Aluno aluno) {
+        Assert.notNull(aluno, "Aluno inexistente.");
+        alunoService.ativar(aluno);
+        return ResponseRest.ok("Aluno ativado com sucesso!");
     }
 
     @GetMapping("/info/{id}")
