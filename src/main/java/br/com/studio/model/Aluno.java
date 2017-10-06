@@ -46,10 +46,11 @@ public class Aluno implements Serializable {
     @JoinColumn(name = "valor_pagar_mes")
     private BigDecimal valorPagarMes;
 
-    @Temporal(TemporalType.DATE)
+//    @Temporal(TemporalType.DATE)
+//    private Date dataNascimento;
+
     private Date dataNascimento;
 
-    @Temporal(TemporalType.DATE)
     private Date dataInicioAulas;
 
     private String segundaHora;
