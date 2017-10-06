@@ -5,6 +5,7 @@ import br.com.studio.model.MapBuilder;
 import br.com.studio.model.ResponseRest;
 import br.com.studio.repository.AlunoRepository;
 import br.com.studio.service.AlunoService;
+import br.com.studio.service.PagamentoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -22,6 +23,7 @@ public class DashboardController extends AbstractRestController{
 
     @Autowired private AlunoRepository alunoRepository;
     @Autowired private AlunoService alunoService;
+    @Autowired private PagamentoService pagamentoService;
 
     @GetMapping
     public ResponseEntity<?> listarAlunos() {

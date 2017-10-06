@@ -56,4 +56,9 @@ public class PagamentoController extends AbstractRestController {
         return ResponseRest.created("Pagamento realizado com sucesso!");
     }
 
+    @GetMapping("/devedores/{mes}")
+    public ResponseEntity<?> teste(@PathVariable String mes) {
+        return ResponseRest.list(pagamentoService.devedores(mes));
+    }
+
 }

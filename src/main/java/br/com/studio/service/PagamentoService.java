@@ -14,6 +14,7 @@ import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @Service
 public class PagamentoService {
@@ -48,6 +49,25 @@ public class PagamentoService {
             pagamento.setDataPagamento(hoje);
             pagamentoRepository.save(pagamento);
         }
+    }
+
+    public List<Aluno> devedores (String mes) {
+        List<Aluno> alunos = alunoRepository.findAllByAtivo(true);
+        List<Pagamento> pagamentos = pagamentoRepository.findAllByMes(mes);
+
+        List<Aluno> alunosDevedores = alunos.stream().filter(aluno -> {
+            Boolean alunoSemPagamento = true;
+            for (Pagamento pagamento: pagamentos) {
+                if (pagamento.getAluno() == aluno) {
+                    alunoSemPagamento = false;
+                    break;
+                }
+            }
+
+            return alunoSemPagamento;
+        }).collect(Collectors.toList());
+
+        return alunosDevedores;
     }
 
     public Map valorTotalMes(List<Pagamento> pagamentos) {

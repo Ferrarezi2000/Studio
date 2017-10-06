@@ -1,5 +1,6 @@
 package br.com.studio.model;
 
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.validator.constraints.NotEmpty;
@@ -14,6 +15,7 @@ import java.util.Date;
 @Getter
 @Setter
 @Table(catalog = "studio", name = "aluno")
+@EqualsAndHashCode
 public class Aluno implements Serializable {
 
     @Id
