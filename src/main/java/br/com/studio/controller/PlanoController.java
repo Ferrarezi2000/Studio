@@ -26,7 +26,7 @@ public class PlanoController extends AbstractRestController{
 
     @GetMapping
     public ResponseEntity<?> listar() {
-        return ResponseRest.list(planoRepository.findAll());
+        return ResponseRest.list(planoRepository.findAllByOrderByValor());
     }
 
     @PostMapping

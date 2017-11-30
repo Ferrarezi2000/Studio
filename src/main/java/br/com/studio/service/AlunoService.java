@@ -10,6 +10,7 @@ import lombok.Getter;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.Assert;
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -151,6 +152,7 @@ public class AlunoService {
         Integer quarta = Math.toIntExact(alunos.stream().filter(a -> a.getQuarta().equals(true)).map(a -> a.getNome()).count());
         Integer quinta = Math.toIntExact(alunos.stream().filter(a -> a.getQuinta().equals(true)).map(a -> a.getNome()).count());
         Integer sexta = Math.toIntExact(alunos.stream().filter(a -> a.getSexta().equals(true)).map(a -> a.getNome()).count());
+        Assert.isTrue(segunda > 0, "teste");
 
         Map retorno = MapBuilder.build()
                 .add("somaPlanos", somaPlanos)
